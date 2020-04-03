@@ -28,6 +28,6 @@ export default {
 <style scoped>
 .social-media-fixed {
   position: fixed;
-  top: 37%;
+  top: 53%;
 }
 </style>

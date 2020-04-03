@@ -2,7 +2,7 @@
   <div class="sneakers d-flex flex-column align-items-center">
     <div
       class="container sneakers-inner"
-      v-for="(category) in menCategory"
+      v-for="(category) in sneakersCollection"
       :key="category.model_id"
     >
       <div class="row">
@@ -12,7 +12,10 @@
         <div class="info-wrapper col-lg-8">
           <h3>{{category.brand}}</h3>
           <h5>{{category.model}}</h5>
-          <p>{{category.description}}</p>
+          <div class="description d-flex align-items-center">
+            <p>{{category.description}}</p>
+          </div>
+
           <ul class="d-flex sizes">
             <li v-for="(size,index) in category.sizes" :key="index">{{size}}</li>
           </ul>
@@ -21,28 +24,33 @@
         </div>
       </div>
     </div>
+    <Loading :active.sync="isLoading"></Loading>
   </div>
 </template>
 
 <script>
 import firebase from "../firebaseInit";
+//Loading component + stylesheet
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 export default {
   data() {
     return {
       testImg: "",
-      menCategory: [],
-      bottomRow: []
+      sneakersCollection: [],
+      isLoading: true
     };
   },
-  computed: {
-    collectionOfThree() {}
+  components: {
+    Loading
   },
   methods: {
     async callImg() {
       let Men = await firebase.firestore.collection("Women").get();
       return Men.docs.forEach(doc => {
-        this.menCategory.push(doc.data());
+        this.isLoading = false;
+        this.sneakersCollection.push(doc.data());
         // console.log(this.menCategory);
       });
     }

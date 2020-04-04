@@ -260,6 +260,7 @@ radio-input {
 }
 .sneakers {
   margin: 10rem 0;
+  width: 70rem !important;
 }
 .sneakers-inner {
   padding: 2rem;

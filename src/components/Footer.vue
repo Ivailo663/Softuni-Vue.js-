@@ -1,5 +1,5 @@
 <template>
-  <div class="footer d-flex justify-content-center">
+  <div class="footer d-flex justify-content-center" id="break-point">
     <div class="footer-inner-container">
       <div class="footer-nav-wrapper">
         <ul class="d-flex justify-content-center">
@@ -57,7 +57,25 @@
 
 <script>
 export default {
-  name: "Footer"
+  name: "Footer",
+  methods: {
+    onScroll() {
+      // const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      const currentScrollPosition =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      const breakPoint = document.getElementById("break-point");
+
+      if (currentScrollPosition + 1000 > breakPoint.offsetTop) {
+        this.$store.state.isMediaShown = false;
+      } else {
+        this.$store.state.isMediaShown = true;
+      }
+    }
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  }
 };
 </script>
 

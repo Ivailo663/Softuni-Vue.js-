@@ -12,8 +12,96 @@
 }
 
 //general classes
+
+radio-input {
+  position: relative;
+  text-align: left;
+}
+.radio-input label {
+  display: block;
+}
+
+.radio-input label {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  position: relative;
+  padding: 0.5rem 0 0.5rem 28px;
+}
+.radio-input {
+  label {
+    &:after,
+    &:before {
+      content: "";
+      display: block;
+      width: 22px;
+      height: 22px;
+      border-radius: 20rem;
+      box-sizing: border-box;
+      position: absolute;
+      left: 4px;
+      top: 24px;
+    }
+    &:before {
+      background-color: @color2;
+      border: 1px solid red;
+    }
+    &:after {
+      background-color: red;
+      transform: scale(0);
+      transition: transform 0.15s ease-out;
+    }
+  }
+}
+
+/* hide the actual input */
+.radio-input input {
+  display: none;
+}
+.radio-input input:checked + label {
+  color: green;
+}
+.radio-input input:checked + label {
+  &:after {
+    transform: scale(0.6);
+  }
+}
+
+/* form scale control */
+.form-scale {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+.form-scale .radio-input label {
+  padding: 0 0 28px 0;
+  width: 28px;
+  text-align: center;
+}
+
+.form-scale .radio-input,
+.form-scale .radio-input {
+  &:after,
+  &:before {
+    display: block;
+    bottom: 0;
+    left: 50%;
+    top: unset;
+    margin-left: -11px;
+  }
+}
+
 .basic-btn {
   width: 12rem !important;
+}
+.price {
+  font-family: "Cinzel Decorative";
+  font-weight: 700;
+}
+.sizeClicked {
+  background-color: @color2;
+  color: @color3;
 }
 .media {
   width: 2.5rem;
@@ -115,75 +203,113 @@
 .main {
   .navigation {
     .banner {
+      position: relative;
       width: 100vw;
       height: 50vh;
       background-image: url("../../src/assets/banner.jpg");
       background-position: 14% 25%;
       background-size: cover;
-    }
-    nav {
-      background-color: #eaeaea !important;
-      ul {
-        text-align: center;
-        li {
-          color: @color1;
-          margin: 0.5rem;
-          font-size: 1.2rem;
+      .landing-msg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 80vw;
+        transform: translate(-50%, -50%);
+        h1 {
+          color: @color3;
+          font-weight: bold;
+          font-size: 7vw;
+          strong {
+            color: @color4;
+          }
+        }
+        p {
+          color: @color3;
           font-weight: 600;
-          cursor: pointer;
-          padding: 0.5rem;
-          text-transform: uperacse;
-          p {
-            margin: 0;
-            text-transform: uppercase;
+          font-size: 1.6rem;
+        }
+      }
+      .user-controller {
+        position: absolute;
+        bottom: 0;
+        right: 2rem;
+        ul {
+          list-style: none;
+          li {
+            color: @color3;
+            font-size: 2rem;
+            margin: 1rem;
+            font-weight: bold;
+            i {
+              color: @color3;
+              font-size: 2rem;
+            }
           }
         }
       }
-    }
-  }
-  .sneakers {
-    margin: 6rem 0;
-    position: relative;
-    .sneakers-inner {
-      width: 80vw;
-      -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-      -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-      box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-      margin: 1rem 0;
-      .row {
+      // basket section
+      .basket {
+        position: absolute;
+        bottom: -21rem;
+        right: 2.5rem;
+        z-index: 1;
+        background-color: @color3;
+        height: 22rem;
+        overflow: scroll;
+        overflow-x: hidden;
+        -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+        -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+        box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
         padding: 1rem;
       }
-      img {
-        width: 100%;
-        height: 40vh;
+      .row {
+        padding: 1rem;
+        position: relative;
+        .discard-item {
+          position: absolute;
+          top: 0.7rem;
+          right: 2rem;
+          font-size: 1.5rem;
+        }
+      }
+      .basket-image-holder {
+        width: 14rem;
+        img {
+          height: 14rem;
+          width: 100%;
+        }
       }
       .info-wrapper {
-        padding: 0 2rem;
-        .description {
-          max-height: 5rem;
-          p {
-            margin: 0;
-          }
+        width: 20rem;
+        padding: 1rem;
+        p {
+          font-size: 1.5rem;
         }
-        .price {
-          font-weight: 700;
-        }
-        ul {
-          bottom: 0;
-          list-style: none;
-          margin: 3rem 0;
-          li {
-            border: 1px solid #3a3a3a;
-            width: 2rem;
-            height: 2rem;
-            text-align: center;
-            margin: 0.2rem;
-          }
-        }
-        .sneakers-buttons-wrapper {
-          position: relative;
-          top: -0.7rem;
-        }
+      }
+      // basket section
+    }
+  }
+}
+.sneakers {
+  margin: 10rem 0;
+}
+.sneakers-inner {
+  padding: 2rem;
+  img {
+    width: 24rem;
+    height: 24rem;
+  }
+}
+.info-wrapper {
+  width: 24rem;
+  ul {
+    list-style: none;
+    li {
+      margin: 0.3rem;
+      border: 1px solid @color2;
+      p {
+        margin: 0;
+        padding: 0.5rem;
       }
     }
   }

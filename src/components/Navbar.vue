@@ -1,6 +1,27 @@
 <template>
   <div class="navigation">
-    <div class="banner"></div>
+    <div class="banner" @click="log">
+      <div class="landing-msg d-flex flex-column align-items-center">
+        <h1>
+          Welcome to
+          <strong>Sneakers</strong>
+        </h1>
+        <p>Chose the best model for you</p>
+      </div>
+      <div class="user-controller">
+        <ul class="d-flex">
+          <li class="shoping-bag">
+            <i class="fa fa-shopping-bag"></i>
+          </li>
+          <li class="login">
+            <i class="fa fa-user"></i>
+          </li>
+        </ul>
+      </div>
+      <div class="basket" v-if="!this.basket.length == 0">
+        <Basket />
+      </div>
+    </div>
     <nav class="navbar navbar-expand-lg d-flex justify-content-end">
       <button
         class="navbar-toggler"
@@ -27,8 +48,9 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import firebase from "../firebaseConfig";
+import Basket from "./Basket";
 export default {
   name: "Navbar",
   data() {
@@ -40,6 +62,18 @@ export default {
       ]
     };
   },
-  methods: {}
+  computed: {
+    ...mapState(["basket"])
+  },
+  components: {
+    Basket
+  },
+  methods: {
+    log() {
+      console.log(this.basket);
+    }
+  }
 };
 </script>
+<style >
+</style>

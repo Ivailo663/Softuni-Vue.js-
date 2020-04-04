@@ -7,8 +7,83 @@
   padding: 0;
   box-sizing: border-box;
 }
+radio-input {
+  position: relative;
+  text-align: left;
+}
+.radio-input label {
+  display: block;
+}
+.radio-input label {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  position: relative;
+  padding: 0.5rem 0 0.5rem 28px;
+}
+.radio-input label:after,
+.radio-input label:before {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 20rem;
+  box-sizing: border-box;
+  position: absolute;
+  left: 4px;
+  top: 24px;
+}
+.radio-input label:before {
+  background-color: #151313;
+  border: 1px solid red;
+}
+.radio-input label:after {
+  background-color: red;
+  transform: scale(0);
+  transition: transform 0.15s ease-out;
+}
+/* hide the actual input */
+.radio-input input {
+  display: none;
+}
+.radio-input input:checked + label {
+  color: green;
+}
+.radio-input input:checked + label:after {
+  transform: scale(0.6);
+}
+/* form scale control */
+.form-scale {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+.form-scale .radio-input label {
+  padding: 0 0 28px 0;
+  width: 28px;
+  text-align: center;
+}
+.form-scale .radio-input:after,
+.form-scale .radio-input:after,
+.form-scale .radio-input:before,
+.form-scale .radio-input:before {
+  display: block;
+  bottom: 0;
+  left: 50%;
+  top: unset;
+  margin-left: -11px;
+}
 .basic-btn {
   width: 12rem !important;
+}
+.price {
+  font-family: "Cinzel Decorative";
+  font-weight: 700;
+}
+.sizeClicked {
+  background-color: #151313;
+  color: #fcfcfc;
 }
 .media {
   width: 2.5rem;
@@ -100,76 +175,112 @@
   text-transform: uppercase;
 }
 .main .navigation .banner {
+  position: relative;
   width: 100vw;
   height: 50vh;
   background-image: url("../../src/assets/banner.jpg");
   background-position: 14% 25%;
   background-size: cover;
 }
-.main .navigation nav {
-  background-color: #eaeaea !important;
-}
-.main .navigation nav ul {
-  text-align: center;
-}
-.main .navigation nav ul li {
-  color: #423b3a;
-  margin: 0.5rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0.5rem;
-  text-transform: uperacse;
-}
-.main .navigation nav ul li p {
-  margin: 0;
-  text-transform: uppercase;
-}
-.main .sneakers {
-  margin: 6rem 0;
-  position: relative;
-}
-.main .sneakers .sneakers-inner {
+.main .navigation .banner .landing-msg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
   width: 80vw;
+  transform: translate(-50%, -50%);
+}
+.main .navigation .banner .landing-msg h1 {
+  color: #fcfcfc;
+  font-weight: bold;
+  font-size: 7vw;
+}
+.main .navigation .banner .landing-msg h1 strong {
+  color: #67e0d2;
+}
+.main .navigation .banner .landing-msg p {
+  color: #fcfcfc;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+.main .navigation .banner .user-controller {
+  position: absolute;
+  bottom: 0;
+  right: 2rem;
+}
+.main .navigation .banner .user-controller ul {
+  list-style: none;
+}
+.main .navigation .banner .user-controller ul li {
+  color: #fcfcfc;
+  font-size: 2rem;
+  margin: 1rem;
+  font-weight: bold;
+}
+.main .navigation .banner .user-controller ul li i {
+  color: #fcfcfc;
+  font-size: 2rem;
+}
+.main .navigation .banner .basket {
+  position: absolute;
+  bottom: -21rem;
+  right: 2.5rem;
+  z-index: 1;
+  background-color: #fcfcfc;
+  height: 22rem;
+  overflow: scroll;
+  overflow-x: hidden;
   -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
   -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
   box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-  margin: 1rem 0;
-}
-.main .sneakers .sneakers-inner .row {
   padding: 1rem;
 }
-.main .sneakers .sneakers-inner img {
-  width: 100%;
-  height: 40vh;
-}
-.main .sneakers .sneakers-inner .info-wrapper {
-  padding: 0 2rem;
-}
-.main .sneakers .sneakers-inner .info-wrapper .description {
-  max-height: 5rem;
-}
-.main .sneakers .sneakers-inner .info-wrapper .description p {
-  margin: 0;
-}
-.main .sneakers .sneakers-inner .info-wrapper .price {
-  font-weight: 700;
-}
-.main .sneakers .sneakers-inner .info-wrapper ul {
-  bottom: 0;
-  list-style: none;
-  margin: 3rem 0;
-}
-.main .sneakers .sneakers-inner .info-wrapper ul li {
-  border: 1px solid #3a3a3a;
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
-  margin: 0.2rem;
-}
-.main .sneakers .sneakers-inner .info-wrapper .sneakers-buttons-wrapper {
+.main .navigation .banner .row {
+  padding: 1rem;
   position: relative;
-  top: -0.7rem;
+}
+.main .navigation .banner .row .discard-item {
+  position: absolute;
+  top: 0.7rem;
+  right: 2rem;
+  font-size: 1.5rem;
+}
+.main .navigation .banner .basket-image-holder {
+  width: 14rem;
+}
+.main .navigation .banner .basket-image-holder img {
+  height: 14rem;
+  width: 100%;
+}
+.main .navigation .banner .info-wrapper {
+  width: 20rem;
+  padding: 1rem;
+}
+.main .navigation .banner .info-wrapper p {
+  font-size: 1.5rem;
+}
+.sneakers {
+  margin: 10rem 0;
+}
+.sneakers-inner {
+  padding: 2rem;
+}
+.sneakers-inner img {
+  width: 24rem;
+  height: 24rem;
+}
+.info-wrapper {
+  width: 24rem;
+}
+.info-wrapper ul {
+  list-style: none;
+}
+.info-wrapper ul li {
+  margin: 0.3rem;
+  border: 1px solid #151313;
+}
+.info-wrapper ul li p {
+  margin: 0;
+  padding: 0.5rem;
 }
 .footer {
   background-color: #151313;

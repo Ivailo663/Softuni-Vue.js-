@@ -1,29 +1,30 @@
 <template>
-  <div class="sneakers d-flex flex-column align-items-center">
-    <div
-      class="container sneakers-inner"
-      v-for="(category) in sneakersCollection"
-      :key="category.model_id"
-    >
-      <div class="row">
-        <div class="sneakers-image-holder col-lg-4">
-          <img :src="category.src" :alt="category.brand" />
-        </div>
-        <div class="info-wrapper col-lg-8">
-          <h3>{{category.brand}}</h3>
-          <h5>{{category.model}}</h5>
-          <div class="description d-flex align-items-center">
-            <p>{{category.description}}</p>
+  <div class="sneakers container">
+    <div class="row">
+      <div v-for="(item) in sneakersCollection" :key="item.model_id" class="col-lg-6">
+        <div class="sneakers-inner d-flex flex-column align-items-center">
+          <div class="sneakers-image-holder">
+            <img :src="item.src" :alt="item.brand" />
           </div>
-
-          <ul class="d-flex sizes">
-            <li v-for="(size,index) in category.sizes" :key="index">{{size}}</li>
-          </ul>
-          <p class="price">{{category.price}} $</p>
-          <button class="btn btn-dark basic-btn">Order</button>
+          <div class="info-wrapper">
+            <h3>{{item.brand}}</h3>
+            <h5>{{item.model}}</h5>
+            <ul class="d-flex sizes">
+              <li v-for="(size,index) in item.sizes" :key="index" @click="pickSize(size)">
+                <!-- <label :for="size" >{{size}}</label> -->
+                <p>{{size}}</p>
+                <!-- <input type="radio" name="size" :value="size" v-model="chosenSize" /> -->
+              </li>
+            </ul>
+            <div class="sneakers-buttons-wrapper">
+              <p class="price">{{item.price}} $</p>
+              <button class="btn btn-dark basic-btn">Add to Basket</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
     <Loading :active.sync="isLoading"></Loading>
   </div>
 </template>

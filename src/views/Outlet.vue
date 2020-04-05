@@ -1,3 +1,5 @@
+
+
 <template>
   <div>
     <v-app id="inspire">
@@ -7,6 +9,7 @@
     </v-app>
   </div>
 </template>
+
 
 <script>
 export default {

@@ -1,10 +1,21 @@
-<template></template>
+
+
+<template>
+  <div>
+    <v-app id="inspire">
+      <v-carousel hide-delimiters>
+        <v-carousel-item v-for="(item,i) in items" :key="i" :src="item.src"></v-carousel-item>
+      </v-carousel>
+    </v-app>
+  </div>
+</template>
+
 
 <script>
 export default {
   data() {
     return {
-      cards: [
+      items: [
         {
           title: "Pre-fab homes",
           src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
@@ -27,11 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  border: 1px solid red;
-  width: 80vw;
-}
-.col-6 {
-  border: 1px solid green;
+div {
+  width: 50vw;
 }
 </style>

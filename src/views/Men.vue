@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-
+    <PreviewModal />
     <Loading :active.sync="isLoading"></Loading>
   </div>
 </template>
@@ -33,6 +33,7 @@ import firebase from "../firebaseInit";
 import { mapState } from "vuex";
 //Loading component + stylesheet
 import Loading from "vue-loading-overlay";
+import PreviewModal from "../components/PreviewModal";
 import "vue-loading-overlay/dist/vue-loading.css";
 
 export default {
@@ -52,7 +53,8 @@ export default {
     };
   },
   components: {
-    Loading
+    Loading,
+    PreviewModal
   },
   methods: {
     addToBasket(item) {

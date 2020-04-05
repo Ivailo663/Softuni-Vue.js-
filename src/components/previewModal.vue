@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <p class="size-warning" v-if="isSizePicked">Chose a size</p>
+  <div class="previewModal">
+    <p class="size-warning">Chose a size</p>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "PreviewModal"
+};
 </script>
 
 <style lang="scss" scoped>

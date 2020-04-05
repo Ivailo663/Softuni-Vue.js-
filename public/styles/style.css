@@ -176,7 +176,6 @@ radio-input {
 }
 .main .navigation .banner {
   position: relative;
-  width: 100vw;
   height: 50vh;
   background-image: url("../../src/assets/banner.jpg");
   background-position: 14% 25%;

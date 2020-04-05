@@ -1,6 +1,6 @@
 <template>
   <div class="navigation">
-    <div class="banner" @click="log">
+    <div class="banner">
       <div class="landing-msg d-flex flex-column align-items-center">
         <h1>
           Welcome to

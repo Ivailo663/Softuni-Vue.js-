@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main" :class="{marginRight:isSidebarOpen}">
     <!-- NAVIGATION -->
     <Navbar />
     <router-view></router-view>
@@ -24,7 +24,7 @@ export default {
     Footer
   },
   computed: {
-    ...mapState(["isMediaShown"])
+    ...mapState(["isMediaShown", "isSidebarOpen"])
   }
 };
 </script>

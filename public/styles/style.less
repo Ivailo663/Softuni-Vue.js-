@@ -13,7 +13,22 @@
 
 //general classes
 
-radio-input {
+.main {
+  transition: 0.4s;
+}
+.marginRight {
+  margin-right: 30rem;
+}
+.offsetRight {
+  position: fixed;
+  top: 0;
+  right: 0 !important;
+}
+span {
+  cursor: pointer;
+}
+.radio-input {
+  //might needs to be removed
   position: relative;
   text-align: left;
 }
@@ -26,71 +41,46 @@ radio-input {
   font-weight: 700;
   font-size: 1rem;
   position: relative;
-  padding: 0.5rem 0 0.5rem 28px;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border: 2px solid @color2;
 }
-.radio-input {
-  label {
-    &:after,
-    &:before {
-      content: "";
-      display: block;
-      width: 22px;
-      height: 22px;
-      border-radius: 20rem;
-      box-sizing: border-box;
-      position: absolute;
-      left: 4px;
-      top: 24px;
-    }
-    &:before {
-      background-color: @color2;
-      border: 1px solid red;
-    }
-    &:after {
-      background-color: red;
-      transform: scale(0);
-      transition: transform 0.15s ease-out;
-    }
-  }
-}
+// .radio-input {
+//   label {
+//     &:after,
+//     &:before {
+//       content: "";
+//       display: block;
+//       width: 22px;
+//       height: 22px;
+//       border-radius: 20rem;
+//       box-sizing: border-box;
+//       position: absolute;
+//       left: 4px;
+//       top: 24px;
+//     }
+//     &:before {
+//       background-color: @color2;
+//       border: 1px solid red;
+//     }
+//     &:after {
+//       background-color: red;
+//       // transform: scale(0);
+//       transition: transform 0.15s ease-out;
+//     }
+//   }
+// }
 
 /* hide the actual input */
 .radio-input input {
   display: none;
 }
 .radio-input input:checked + label {
-  color: green;
-}
-.radio-input input:checked + label {
-  &:after {
-    transform: scale(0.6);
-  }
+  border: 2px solid @color4;
+  color: @color4;
 }
 
 /* form scale control */
-.form-scale {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 1rem 0;
-}
-.form-scale .radio-input label {
-  padding: 0 0 28px 0;
-  width: 28px;
-  text-align: center;
-}
-
-.form-scale .radio-input,
-.form-scale .radio-input {
-  &:after,
-  &:before {
-    display: block;
-    bottom: 0;
-    left: 50%;
-    top: unset;
-    margin-left: -11px;
-  }
-}
 
 .basic-btn {
   width: 12rem !important;
@@ -99,9 +89,10 @@ radio-input {
   font-family: "Cinzel Decorative";
   font-weight: 700;
 }
-.sizeClicked {
-  background-color: @color2;
-  color: @color3;
+.sizePicked {
+  // background-color: @color2 !important;
+  margin-bottom: 0.5rem !important;
+  color: @color5 !important;
 }
 .media {
   width: 2.5rem;
@@ -127,7 +118,68 @@ radio-input {
   background-image: url("../../src/assets/icons/twitter.png");
   background-size: cover;
 }
-//general classes
+
+.layer {
+  position: fixed;
+  background-color: black;
+  opacity: 0.3;
+  transition: 0.4s;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+// !Sidebar
+#inspire {
+  margin-top: 2rem;
+  height: 40vh !important;
+  .v-window {
+    height: 40vh !important;
+  }
+  .v-sheet {
+    position: relative;
+    img {
+      position: absolute;
+      bottom: 1rem;
+    }
+  }
+  .v-responsive {
+    height: 57vh;
+  }
+}
+.sidebar {
+  width: 30em;
+  height: 100%;
+  background-color: @color3;
+  top: 0;
+  right: -30rem;
+  position: fixed;
+  transition: 0.4s;
+  .discard-item {
+    position: relative;
+    top: 1rem;
+    right: -1rem;
+    i {
+      font-size: 1.2rem;
+    }
+  }
+  .description-section {
+    padding: 2rem;
+    h5 {
+      margin: 1.5rem 0 3rem;
+    }
+    .btn {
+      width: 25rem;
+    }
+  }
+  .sizes {
+    margin: 0 0 3rem 0;
+  }
+}
+// !Sidebar
+
+//general classes end
 
 //  HOME SECTION START
 .home {
@@ -200,119 +252,116 @@ radio-input {
 // HOME SECTION END
 
 // MAIN SECTION START
-.main {
-  .navigation {
-    .banner {
-      position: relative;
-      width: 100vw;
-      height: 50vh;
-      background-image: url("../../src/assets/banner.jpg");
-      background-position: 14% 25%;
-      background-size: cover;
-      .landing-msg {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 80vw;
-        transform: translate(-50%, -50%);
-        h1 {
-          color: @color3;
-          font-weight: bold;
-          font-size: 7vw;
-          strong {
-            color: @color4;
-          }
-        }
-        p {
-          color: @color3;
-          font-weight: 600;
-          font-size: 1.6rem;
+
+.navigation {
+  .banner {
+    position: relative;
+    // width: 100%;
+    height: 50vh;
+    background-image: url("../../src/assets/banner.jpg");
+    background-position: 14% 25%;
+    background-size: cover;
+    .landing-msg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      h1 {
+        color: @color3;
+        font-weight: bold;
+        font-size: 7vw;
+        strong {
+          color: @color4;
         }
       }
-      .user-controller {
-        position: absolute;
-        bottom: 0;
-        right: 2rem;
-        ul {
-          list-style: none;
-          li {
+      p {
+        color: @color3;
+        font-weight: 600;
+        font-size: 1.6rem;
+      }
+    }
+    .user-controller {
+      position: absolute;
+      bottom: 0;
+      right: 2rem;
+      ul {
+        list-style: none;
+        li {
+          color: @color3;
+          font-size: 2rem;
+          margin: 1rem;
+          font-weight: bold;
+          i {
             color: @color3;
             font-size: 2rem;
-            margin: 1rem;
-            font-weight: bold;
-            i {
-              color: @color3;
-              font-size: 2rem;
-            }
           }
         }
       }
-      // basket section
-      .basket {
-        position: absolute;
-        bottom: -21rem;
-        right: 2.5rem;
-        z-index: 1;
-        background-color: @color3;
-        height: 22rem;
-        overflow: scroll;
-        overflow-x: hidden;
-        -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-        -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-        box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-        padding: 1rem;
-      }
-      .row {
-        padding: 1rem;
-        position: relative;
-        .discard-item {
-          position: absolute;
-          top: 0.7rem;
-          right: 2rem;
-          font-size: 1.5rem;
-        }
-      }
-      .basket-image-holder {
-        width: 14rem;
-        img {
-          height: 14rem;
-          width: 100%;
-        }
-      }
-      .info-wrapper {
-        width: 20rem;
-        padding: 1rem;
-        p {
-          font-size: 1.5rem;
-        }
-      }
-      // basket section
     }
+    // basket section
+    .basket {
+      position: absolute;
+      bottom: -21rem;
+      right: 2.5rem;
+      z-index: 1;
+      background-color: @color3;
+      height: 22rem;
+      overflow: scroll;
+      overflow-x: hidden;
+      -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+      -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+      box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+      padding: 1rem;
+    }
+    .row {
+      padding: 1rem;
+      position: relative;
+      .discard-item {
+        position: absolute;
+        top: 0.7rem;
+        right: 2rem;
+        font-size: 1.5rem;
+      }
+    }
+    .basket-image-holder {
+      width: 14rem;
+      img {
+        height: 14rem;
+        width: 100%;
+      }
+    }
+    .info-wrapper {
+      width: 20rem;
+      padding: 1rem;
+      p {
+        font-size: 1.5rem;
+      }
+    }
+    // basket section
   }
 }
 .sneakers {
   margin: 10rem 0;
-  width: 70rem !important;
 }
 .sneakers-inner {
-  padding: 2rem;
-  img {
-    width: 24rem;
-    height: 24rem;
+  margin: 1rem 0;
+  .sneakers-image-holder {
+    width: 100%;
+    img {
+      width: 100%;
+      height: 51vh;
+    }
   }
 }
 .info-wrapper {
-  width: 24rem;
-  ul {
-    list-style: none;
-    li {
-      margin: 0.3rem;
-      border: 1px solid @color2;
-      p {
-        margin: 0;
-        padding: 0.5rem;
-      }
-    }
+  width: 100%;
+
+  p {
+    margin: 0;
+    padding: 0.5rem;
+  }
+  .model-wrapper {
+    min-height: 4rem;
   }
 }
 //MAIN SECTION END

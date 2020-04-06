@@ -2,7 +2,7 @@
   <div class="navigation">
     <div class="banner">
       <div class="landing-msg d-flex flex-column align-items-center">
-        <h1>
+        <h1 @click="closingBasket">
           Welcome to
           <strong>Sneakers</strong>
         </h1>
@@ -10,7 +10,7 @@
       </div>
       <div class="user-controller">
         <ul class="d-flex">
-          <li class="shoping-bag">
+          <li @click="openBasket" class="shoping-bag">
             <i class="fa fa-shopping-bag"></i>
           </li>
           <li class="login">
@@ -18,7 +18,7 @@
           </li>
         </ul>
       </div>
-      <div class="basket" v-if="!this.basket.length == 0">
+      <div class="basket" v-if="!isBasketEmpty">
         <Basket />
       </div>
     </div>
@@ -48,7 +48,7 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapState } from "vuex";
+import { mapGetters, mapState, mapActions } from "vuex";
 import firebase from "../firebaseConfig";
 import Basket from "./Basket";
 export default {
@@ -59,18 +59,31 @@ export default {
         { id: 0, name: "men", route: "/men" },
         { id: 1, name: "women", route: "/women" },
         { id: 2, name: "outlet", route: "/outlet" }
-      ]
+      ],
+      timeOut: null
     };
   },
   computed: {
-    ...mapState(["basket"])
+    ...mapState(["basket", "isBasketEmpty", "isSidebarOpen"])
   },
   components: {
     Basket
   },
   methods: {
-    log() {
-      console.log(this.basket);
+    ...mapActions(["closeBasket"]),
+    closingBasket() {
+      this.closeBasket();
+    },
+    openBasket() {
+      this.$store.state.isBasketEmpty = !this.$store.state.isBasketEmpty;
+    }
+  },
+  watch: {
+    isBasketEmpty: {
+      handler: function(oldVal, newVal) {
+        console.log(`isBasketEmpty changed from ${newVal} to ${oldVal}`);
+        this.closingBasket();
+      }
     }
   }
 };

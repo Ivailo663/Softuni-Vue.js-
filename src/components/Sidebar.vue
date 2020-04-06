@@ -5,13 +5,15 @@
     </span>
 
     <v-app id="inspire">
-      <v-carousel height="400" show-arrows-on-hover>
+      <v-carousel height="400" show-arrows-on-hover persistent="false ">
         <v-carousel-item v-for="(slide, i) in item.gallery" :key="i">
           <v-sheet height="100%">
+            <!-- <v-row class="fill-height" align="center" justify="center">
+              <div class="display-3">
+                <img :src="slide" alt />
+              </div>
+            </v-row>-->
             <img :src="slide" alt />
-            <v-row class="fill-height" align="center" justify="center">
-              <div class="display-3">{{ slide }} Slide</div>
-            </v-row>
           </v-sheet>
         </v-carousel-item>
       </v-carousel>
@@ -60,7 +62,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["isMediaShown", "isSidebarOpen"])
+    ...mapState(["isMediaShown", "isSidebarOpen", "isBasketEmpty"])
   },
   methods: {
     closeModal() {
@@ -75,12 +77,22 @@ export default {
         this.resultOfBothObj = { ...item, ...this.pickedSize };
         this.basket.push(this.resultOfBothObj);
         this.$store.state.isSidebarOpen = false;
+        this.openBasket();
+      }
+    },
+    openBasket() {
+      if (this.basket) {
+        this.$store.state.isBasketEmpty = false;
       }
     },
     pickSize(size) {
       this.pickedSize.sizes = size;
       this.isSizePicked = false;
     }
+  },
+  beforeDestroy() {
+    // this.item.size = "";
+    clg;
   }
 };
 </script>

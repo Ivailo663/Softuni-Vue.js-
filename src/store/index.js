@@ -44,13 +44,10 @@ export default new Vuex.Store({
     },
     setBlur({ state }) {
       if (localStorage.userLogged == "false") {
-        console.log(localStorage.userLogged, "towa e ?");
         setTimeout(() => {
           state.isBlurSet = true;
         }, 7000);
       } else {
-        console.log(!localStorage.userLogged, "??????");
-        console.log(!state.userLogged, "true??????");
       }
     },
 

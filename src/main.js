@@ -9,21 +9,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
-import Notifications from "vue-notification";
-import { VSnackbar, VBtn, VIcon } from "vuetify/lib";
-import VuetifyToast from "vuetify-toast-snackbar";
+// import Notifications from "vue-notification";
+// import { VSnackbar, VBtn, VIcon } from "vuetify/lib";
+// import VuetifyToast from "vuetify-toast-snackbar";
 
-Vue.use(Notifications);
+// Vue.use(Notifications);
 
-Vue.use(Vuetify, {
-  components: {
-    VSnackbar,
-    VBtn,
-    VIcon,
-  },
-});
+Vue.use(Vuetify);
 
-Vue.use(VuetifyToast);
+// Vue.use(VuetifyToast);
 
 new Vue({
   router,

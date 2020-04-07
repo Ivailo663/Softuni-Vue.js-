@@ -12,8 +12,14 @@
       </div>
       <Footer />
     </div>
-
-    <v-snackbar v-model="userLogged" class="snackbar" center top color="#85c688">You're in!</v-snackbar>
+    <v-snackbar
+      v-model="userLogged"
+      class="snackbar"
+      :timeout="1500"
+      center
+      top
+      color="#85c688"
+    >You're in!</v-snackbar>
     <FormsContainer v-if="isBlurSet" />
   </div>
 </template>
@@ -46,7 +52,7 @@ export default {
       this.setBlur();
     }
   },
-  created() {
+  mounted() {
     this.blur();
   },
   watch: {}

@@ -5,7 +5,6 @@
         <h1>
           Welcome to
           <strong>Sneakers</strong>
-          <router-link to="/checkout">CHECKOUT</router-link>
         </h1>
       </div>
       <div class="user-controller">
@@ -37,28 +36,10 @@
         <Basket />
       </div>
     </div>
-    <nav class="navbar navbar-expand-lg d-flex justify-content-end">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarsExample08"
-        aria-controls="navbarsExample08"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
-        <ul class="navbar-nav" v-for="category in categories" :key="category.id">
-          <router-link :to="`/home${category.route}`">
-            <li class="nav-item">
-              <p>{{category.name}}</p>
-            </li>
-          </router-link>
-        </ul>
-      </div>
+    <nav class="navbar d-flex justify-content-center">
+      <ul class="d-flex justify-content-center" v-for="category in categories" :key="category.key">
+        <router-link tag="li" :to="`/home${category.route}`">{{category.name}}</router-link>
+      </ul>
     </nav>
   </div>
 </template>
@@ -99,6 +80,8 @@ export default {
       firebase.authtentication
         .signOut()
         .then(() => {
+          this.$store.state.userLogged = false;
+          localStorage.removeItem("userLogged");
           console.log("SIGNED OUT!");
         })
         .catch(function(error) {

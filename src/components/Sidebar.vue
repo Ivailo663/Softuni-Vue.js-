@@ -8,11 +8,6 @@
       <v-carousel height="400" show-arrows-on-hover persistent="false ">
         <v-carousel-item v-for="(slide, i) in item.gallery" :key="i">
           <v-sheet height="100%">
-            <!-- <v-row class="fill-height" align="center" justify="center">
-              <div class="display-3">
-                <img :src="slide" alt />
-              </div>
-            </v-row>-->
             <img :src="slide" alt />
           </v-sheet>
         </v-carousel-item>

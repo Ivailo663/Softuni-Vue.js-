@@ -234,6 +234,11 @@ span i {
 .navigation .banner .landing-msg h1 strong {
   color: #67e0d2;
 }
+@media (max-width: 768px) {
+  .navigation .banner .landing-msg h1 {
+    font-size: 12vw;
+  }
+}
 .navigation .banner .landing-msg p {
   color: #fcfcfc;
   font-weight: 600;
@@ -294,6 +299,20 @@ span i {
 }
 .navigation .banner .info-wrapper p {
   font-size: 1.5rem;
+}
+.navigation nav {
+  background: #fcfcfc;
+  padding: 0;
+}
+.navigation nav ul {
+  list-style: none;
+  margin: 0;
+}
+.navigation nav ul li {
+  margin: 1rem;
+  color: #151313;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 .sneakers {
   margin: 10rem 0;

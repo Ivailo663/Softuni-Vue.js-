@@ -22,6 +22,9 @@ export default new Vuex.Store({
   mutations: {
     CHECKINT_STATE: (state, payload) => {
       state.userLogged = payload;
+      localStorage.setItem("userLogged", payload);
+      console.log(state.userLogged, "USER");
+      console.log(localStorage.getItem("userLogged"), "LOCAL");
     },
     COLLECT_DATA: (state, data) => {
       let payloadObjet = {
@@ -40,18 +43,19 @@ export default new Vuex.Store({
       }, 4000);
     },
     setBlur({ state }) {
-      if (!state.userLogged) {
+      if (localStorage.userLogged == "false") {
+        console.log(localStorage.userLogged, "towa e ?");
         setTimeout(() => {
           state.isBlurSet = true;
         }, 7000);
+      } else {
+        console.log(!localStorage.userLogged, "??????");
+        console.log(!state.userLogged, "true??????");
       }
     },
 
     checkingState({ commit }, user) {
       commit("CHECKINT_STATE", user !== null);
-      // if (user) {
-      //   commit("SET_USER", user);
-      // }
     },
   },
 });

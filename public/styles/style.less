@@ -12,7 +12,10 @@
 }
 
 //general classes
-
+// .v-snack_content {
+//   display: flex !important;
+//   justify-content: center !important;
+// }
 .main {
   transition: 0.4s;
 }
@@ -285,6 +288,11 @@ span i {
           color: @color4;
         }
       }
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 12vw;
+        }
+      }
       p {
         color: @color3;
         font-weight: 600;
@@ -348,7 +356,21 @@ span i {
         font-size: 1.5rem;
       }
     }
-    // basket section
+    // basket section end
+  }
+  nav {
+    background: @color3;
+    padding: 0;
+    ul {
+      list-style: none;
+      margin: 0;
+      li {
+        margin: 1rem;
+        color: @color2;
+        font-size: 1.2rem;
+        font-weight: 500;
+      }
+    }
   }
 }
 .sneakers {

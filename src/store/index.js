@@ -53,6 +53,7 @@ export default new Vuex.Store({
 
     checkingState({ commit }, user) {
       commit("CHECKINT_STATE", user !== null);
+      console.log("CHECKING THE BRANCH");
     },
   },
 });

@@ -49,7 +49,8 @@ export default new Vuex.Store({
         }, 7000);
       } else {
         console.log(!localStorage.userLogged, "??");
-        console.log(!state.userLogged, "??");
+        console.log(!state.userLogged, "");
+        console.log("CHECKING IF MERGED");
       }
     },
 

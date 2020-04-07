@@ -10,6 +10,9 @@
 .main {
   transition: 0.4s;
 }
+.blur {
+  filter: blur(6px);
+}
 .marginRight {
   margin-right: 30rem;
 }
@@ -20,7 +23,7 @@
 }
 li span,
 li,
-i span {
+span i {
   cursor: pointer;
 }
 .radio-input {
@@ -139,67 +142,73 @@ i span {
 .sidebar .sizes {
   margin: 0 0 3rem 0;
 }
-.home {
-  background-image: url("../../src/assets/home.jpg");
-  background-size: cover;
+.form {
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
-.home .home-right-container {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
+.form h3 {
+  color: #423b3a;
+  font-size: 1.4rem;
+  font-weight: 400;
 }
-.home h3 {
-  position: absolute;
-  top: -4rem;
-  left: -0.3rem;
-  color: #fcfcfc;
-}
-.home .form {
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 0.7rem;
+.form .form-inner {
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.home .form label {
+.form .form-inner .discard-item {
+  position: absolute;
+  top: -2.2rem;
+  right: -2rem;
+  font-size: 1.5rem;
+}
+.form .form-inner label {
   color: #423b3a;
   font-size: 0.7rem;
   margin: 0.5rem 0;
 }
-.home .form .input-fields-wrapper {
+.form .form-inner .input-fields-wrapper {
   margin: 1rem;
   width: 27vw;
 }
-.home .form .input-fields-wrapper input {
+.form .form-inner .input-fields-wrapper input {
   padding: 1em;
   height: 3rem;
   background-color: transparent;
-  border: 0.05rem solid #fcfcfc;
-  border: 0.05rem solid #3a3a3a;
+  border: 0.05rem solid #423b3a;
   border-left: none;
   border-right: none;
   border-top: none;
 }
 @media (max-width: 1024px) {
-  .home .form .input-fields-wrapper {
+  .form .form-inner .input-fields-wrapper {
     width: 50vw;
   }
 }
 @media (max-width: 768px) {
-  .home .form .input-fields-wrapper {
+  .form .form-inner .input-fields-wrapper {
     width: 69vw;
   }
 }
-.home .form .switch-form {
+.form .form-inner .switch-form {
   text-align: right;
 }
-.home .form .switch-form a {
+.form .form-inner .switch-form a {
+  font-size: 0.7rem;
   padding-left: 0;
   padding-right: 0;
   color: #423b3a;
 }
-.home .form button {
+.form .form-inner button {
   margin: 3rem 0;
   height: 3rem;
   text-transform: uppercase;

@@ -6,7 +6,7 @@ const config = {
   storageBucket: "gs://softuni-vuejs.appspot.com",
   messagingSenderId: "1019293273320",
   appId: "1:1019293273320:web:2bfeba485747d1d87f0d5d",
-  measurementId: "G-BMP95YXLEC"
+  measurementId: "G-BMP95YXLEC",
 };
 
 export default config;

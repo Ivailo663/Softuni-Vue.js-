@@ -1,31 +1,55 @@
 <template>
   <div class="main" :class="{marginRight:isSidebarOpen}">
-    <!-- NAVIGATION -->
-    <Navbar />
-    <router-view></router-view>
-    <div class="social-media-fixed d-flex flex-column" v-if="this.isMediaShown">
-      <div class="media facebook"></div>
-      <div class="media pinterest"></div>
-      <div class="media snapchat"></div>
-      <div class="media instagram"></div>
-      <div class="media twitter"></div>
+    <div :class="{blur:isBlurSet}">
+      <Navbar />
+      <router-view></router-view>
+      <div class="social-media-fixed d-flex flex-column" v-if="this.isMediaShown">
+        <div class="media facebook"></div>
+        <div class="media pinterest"></div>
+        <div class="media snapchat"></div>
+        <div class="media instagram"></div>
+        <div class="media twitter"></div>
+      </div>
+      <Footer />
     </div>
-    <Footer />
+
+    <v-snackbar v-model="userLogged" class="snackbar" center top color="#85c688">You're in!</v-snackbar>
+    <FormsContainer v-if="isBlurSet" />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import FormsContainer from "./Registration/FormsContainer";
+import firebase from "../firebaseInit";
+
 export default {
+  data() {
+    return {};
+  },
   components: {
     Navbar,
-    Footer
+    Footer,
+    FormsContainer
   },
   computed: {
-    ...mapState(["isMediaShown", "isSidebarOpen"])
-  }
+    ...mapState(["isMediaShown", "isSidebarOpen", "isBlurSet", "userLogged"]),
+    curUser() {
+      return this.user;
+    }
+  },
+  methods: {
+    ...mapActions(["setBlur"]),
+    blur() {
+      this.setBlur();
+    }
+  },
+  created() {
+    this.blur();
+  },
+  watch: {}
 };
 </script>
 

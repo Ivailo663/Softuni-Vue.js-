@@ -5,8 +5,14 @@ import "firebase/firestore";
 import "firebase/auth";
 
 import config from "./firebaseConfig";
+import store from "./store/index";
 
 firebase.initializeApp(config);
+
+firebase.auth().onAuthStateChanged((user) => {
+  store.dispatch("checkingState", user);
+  //   console.log("changed");
+});
 
 const firestore = firebase.firestore();
 const storage = firebase.storage();

@@ -2,19 +2,34 @@
   <div class="navigation">
     <div class="banner">
       <div class="landing-msg d-flex flex-column align-items-center">
-        <h1 @click="closingBasket">
+        <h1>
           Welcome to
           <strong>Sneakers</strong>
+          <router-link to="/checkout">CHECKOUT</router-link>
         </h1>
-        <p>Chose the best model for you</p>
       </div>
       <div class="user-controller">
         <ul class="d-flex">
           <li @click="openBasket" class="shoping-bag">
             <i class="fa fa-shopping-bag"></i>
           </li>
-          <li class="login">
+          <li class="login" @click="openForm" v-if="!userLogged">
+            <i class="fa fa-sign-in-alt"></i>
+          </li>
+          <li
+            class="login"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            v-if="userLogged"
+          >
             <i class="fa fa-user"></i>
+
+            <div class="dropdown-menu">
+              <!-- Dropdown menu links -->
+              <button class="dropdown-item" type="button">Profile</button>
+              <button class="dropdown-item" type="button" @click="signOut">Log out</button>
+            </div>
           </li>
         </ul>
       </div>
@@ -37,7 +52,7 @@
 
       <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
         <ul class="navbar-nav" v-for="category in categories" :key="category.id">
-          <router-link :to="`/main${category.route}`">
+          <router-link :to="`/home${category.route}`">
             <li class="nav-item">
               <p>{{category.name}}</p>
             </li>
@@ -49,22 +64,22 @@
 </template>
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
-import firebase from "../firebaseConfig";
+import firebase from "../firebaseInit";
 import Basket from "./Basket";
 export default {
   name: "Navbar",
   data() {
     return {
       categories: [
-        { id: 0, name: "men", route: "/men" },
-        { id: 1, name: "women", route: "/women" },
+        { id: 0, name: "men", route: "/menSection" },
+        { id: 1, name: "women", route: "/womenSection" },
         { id: 2, name: "outlet", route: "/outlet" }
       ],
       timeOut: null
     };
   },
   computed: {
-    ...mapState(["basket", "isBasketEmpty", "isSidebarOpen"])
+    ...mapState(["basket", "isBasketEmpty", "isSidebarOpen", "userLogged"])
   },
   components: {
     Basket
@@ -76,6 +91,19 @@ export default {
     },
     openBasket() {
       this.$store.state.isBasketEmpty = !this.$store.state.isBasketEmpty;
+    },
+    openForm() {
+      this.$store.state.isBlurSet = true;
+    },
+    signOut() {
+      firebase.authtentication
+        .signOut()
+        .then(() => {
+          console.log("SIGNED OUT!");
+        })
+        .catch(function(error) {
+          // An error happened.
+        });
     }
   },
   watch: {

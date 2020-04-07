@@ -89,10 +89,6 @@ export default {
       this.pickedSize.sizes = size;
       this.isSizePicked = false;
     }
-  },
-  beforeDestroy() {
-    // this.item.size = "";
-    clg;
   }
 };
 </script>

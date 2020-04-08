@@ -100,7 +100,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["COLLECT_DATA"]),
+    ...mapMutations(["COLLECT_DATA_REG"]),
     submit() {
       if (!this.$v.form.$error) {
         firebase.authtentication
@@ -113,7 +113,7 @@ export default {
                 displayName: this.form.firstName
               })
               .then(() => {
-                this.COLLECT_DATA(user.user);
+                this.COLLECT_DATA_REG(user.user);
                 firebase.firestore
                   .collection("users")
                   .doc(this.collectData.uid)

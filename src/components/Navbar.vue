@@ -32,7 +32,7 @@
           </li>
         </ul>
       </div>
-      <div class="basket" v-if="!isBasketEmpty">
+      <div class="basket" v-if="open">
         <Basket />
       </div>
     </div>
@@ -45,6 +45,7 @@
 </template>
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
+import { PerfectScrollbar } from "vue2-perfect-scrollbar";
 import firebase from "../firebaseInit";
 import Basket from "./Basket";
 export default {
@@ -56,7 +57,8 @@ export default {
         { id: 1, name: "women", route: "/womenSection" },
         { id: 2, name: "outlet", route: "/outlet" }
       ],
-      timeOut: null
+      timeOut: null,
+      open: false
     };
   },
   computed: {
@@ -71,7 +73,11 @@ export default {
       this.closeBasket();
     },
     openBasket() {
-      this.$store.state.isBasketEmpty = !this.$store.state.isBasketEmpty;
+      if (this.isBasketEmpty) {
+        this.open = false;
+      } else {
+        this.open = true;
+      }
     },
     openForm() {
       this.$store.state.isBlurSet = true;
@@ -93,7 +99,7 @@ export default {
     isBasketEmpty: {
       handler: function(oldVal, newVal) {
         console.log(`isBasketEmpty changed from ${newVal} to ${oldVal}`);
-        this.closingBasket();
+        // this.closingBasket();
       }
     }
   }

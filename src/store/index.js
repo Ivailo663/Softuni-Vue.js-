@@ -17,16 +17,20 @@ export default new Vuex.Store({
       email: null,
       uid: null,
     },
+    collectDataLogged: {
+      address: null,
+      email: null,
+      phone: null,
+      name: null,
+    },
   },
 
   mutations: {
     CHECKINT_STATE: (state, payload) => {
       state.userLogged = payload;
       localStorage.setItem("userLogged", payload);
-      console.log(state.userLogged, "USER");
-      console.log(localStorage.getItem("userLogged"), "LOCAL");
     },
-    COLLECT_DATA: (state, data) => {
+    COLLECT_DATA_REG: (state, data) => {
       let payloadObjet = {
         email: data.email,
         user: data.displayName,
@@ -34,6 +38,21 @@ export default new Vuex.Store({
       };
 
       state.collectData = Object.assign({}, state.collectData, payloadObjet);
+      console.log(state.collectData);
+    },
+    COLLECT_DATA_LOG: (state, data) => {
+      let payloadObject = {
+        email: data.email,
+        name: data.name,
+        phone: data.phone,
+        address: data.address,
+      };
+      state.collectDataLogged = Object.assign(
+        {},
+        state.collectDataLogged,
+        payloadObject
+      );
+      console.log(state.collectDataLogged, "collected when logged!");
     },
   },
   actions: {
@@ -53,7 +72,6 @@ export default new Vuex.Store({
 
     checkingState({ commit }, user) {
       commit("CHECKINT_STATE", user !== null);
-      console.log("CHECKING THE BRANCH");
     },
   },
 });

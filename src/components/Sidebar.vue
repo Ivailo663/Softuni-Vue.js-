@@ -19,6 +19,7 @@
         </div>
         <div class="sneakers-buttons-wrapper">
           <p v-if="isSizePicked" class="sizePicked">Please pick a size.</p>
+          <p v-else>Sizes</p>
           <div class="d-flex sizes">
             <div v-for="(size,index) in item.sizes" :key="index" class="radio-input">
               <input :id="index" type="radio" name="size" :value="index" />

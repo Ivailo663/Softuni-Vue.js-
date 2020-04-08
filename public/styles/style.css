@@ -108,7 +108,7 @@ span i {
 }
 #inspire .v-sheet img {
   position: absolute;
-  bottom: 1rem;
+  bottom: -6rem;
 }
 #inspire .v-responsive {
   height: 57vh;
@@ -141,6 +141,60 @@ span i {
 }
 .sidebar .sizes {
   margin: 0 0 3rem 0;
+}
+.basket {
+  position: absolute;
+  bottom: -26rem;
+  right: 2.5rem;
+  z-index: 1;
+  background-color: #fcfcfc;
+  -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+  -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+  padding: 1rem;
+}
+.basket-inner {
+  height: 22rem;
+}
+.basket-inner .row {
+  padding: 1rem;
+  position: relative;
+}
+.basket-inner .row .discard-item {
+  position: absolute;
+  top: 0.7rem;
+  right: 2rem;
+  font-size: 1.5rem;
+}
+.basket-inner .basket-image-holder {
+  width: 14rem;
+}
+.basket-inner .basket-image-holder img {
+  height: 14rem;
+  width: 100%;
+}
+.basket-inner .info-wrapper {
+  width: 20rem;
+  padding: 1rem;
+}
+.basket-inner .info-wrapper p {
+  font-size: 1.5rem;
+}
+.basket-inner .total {
+  margin: 0 1rem;
+  font-size: 1.5rem;
+}
+.basket-inner > div:last-child {
+  margin: 3rem 0;
+}
+#break-point {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+p {
+  font-weight: 300;
 }
 .form {
   width: 100%;
@@ -262,44 +316,6 @@ span i {
   color: #fcfcfc;
   font-size: 2rem;
 }
-.navigation .banner .basket {
-  position: absolute;
-  bottom: -21rem;
-  right: 2.5rem;
-  z-index: 1;
-  background-color: #fcfcfc;
-  height: 22rem;
-  overflow: scroll;
-  overflow-x: hidden;
-  -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-  -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-  padding: 1rem;
-}
-.navigation .banner .row {
-  padding: 1rem;
-  position: relative;
-}
-.navigation .banner .row .discard-item {
-  position: absolute;
-  top: 0.7rem;
-  right: 2rem;
-  font-size: 1.5rem;
-}
-.navigation .banner .basket-image-holder {
-  width: 14rem;
-}
-.navigation .banner .basket-image-holder img {
-  height: 14rem;
-  width: 100%;
-}
-.navigation .banner .info-wrapper {
-  width: 20rem;
-  padding: 1rem;
-}
-.navigation .banner .info-wrapper p {
-  font-size: 1.5rem;
-}
 .navigation nav {
   background: #fcfcfc;
   padding: 0;
@@ -362,4 +378,67 @@ span i {
 }
 .footer .social-media-container {
   margin-bottom: 2rem;
+}
+.checkout .container > .row {
+  margin: 5rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid #151313;
+  border-bottom: 1px solid #151313;
+  padding: 0;
+}
+.checkout .basket-inner {
+  height: 43vh;
+}
+.checkout .basket-inner + div .number {
+  margin: 0.5rem;
+  font-size: 1.2rem;
+  color: red;
+}
+.checkout .basket-inner + div .total {
+  border-top: 1px solid red;
+}
+.order-info {
+  margin: 1rem;
+  width: 80%;
+}
+.order-info input {
+  padding: 1em;
+  height: 3rem;
+  background-color: transparent;
+  border: 0.05rem solid #423b3a;
+}
+.order-info label {
+  margin-top: 2rem;
+}
+.order-info .radio-wrapper {
+  margin-top: 2rem;
+}
+.order-info .payment-method {
+  margin-top: 2rem;
+}
+.order-info .payment-method > :first-child {
+  position: relative;
+}
+.order-info .payment-method > :first-child input {
+  position: absolute;
+  top: -9px;
+  right: -35px;
+}
+.order-info .payment-method > :first-child label {
+  margin: 0;
+}
+.order-info .payment-method > :last-child {
+  margin-left: 3rem;
+  position: relative;
+}
+.order-info .payment-method > :last-child input {
+  position: absolute;
+  top: -9px;
+  right: -35px;
+}
+.order-info .payment-method > :last-child label {
+  margin: 0;
+}
+.order-info .btn {
+  margin: 2rem 0;
 }

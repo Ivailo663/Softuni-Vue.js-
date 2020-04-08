@@ -9,15 +9,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
-// import Notifications from "vue-notification";
-// import { VSnackbar, VBtn, VIcon } from "vuetify/lib";
-// import VuetifyToast from "vuetify-toast-snackbar";
+import PerfectScrollbar from "vue2-perfect-scrollbar";
+import "vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css";
 
-// Vue.use(Notifications);
+Vue.use(PerfectScrollbar);
 
 Vue.use(Vuetify);
-
-// Vue.use(VuetifyToast);
 
 new Vue({
   router,

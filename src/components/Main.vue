@@ -12,14 +12,24 @@
       </div>
       <Footer />
     </div>
-    <v-snackbar
+    <!-- <v-snackbar
       v-model="userLogged"
       class="snackbar"
       :timeout="1500"
       center
       top
       color="#85c688"
-    >You're in!</v-snackbar>
+    >You're in!</v-snackbar>-->
+    <v-snackbar
+      v-model="itemAddedProp"
+      class="snackbar"
+      :timeout="1500"
+      center
+      top
+      color="#85c108"
+    >Item added!!</v-snackbar>
+    <FormsContainer v-if="isBlurSet" />
+
     <FormsContainer v-if="isBlurSet" />
   </div>
 </template>
@@ -33,7 +43,10 @@ import firebase from "../firebaseInit";
 
 export default {
   data() {
-    return {};
+    return {
+      itemAddedProp: null,
+      asdf: true
+    };
   },
   components: {
     Navbar,
@@ -41,10 +54,16 @@ export default {
     FormsContainer
   },
   computed: {
-    ...mapState(["isMediaShown", "isSidebarOpen", "isBlurSet", "userLogged"]),
-    curUser() {
-      return this.user;
-    }
+    ...mapState([
+      "isMediaShown",
+      "isSidebarOpen",
+      "isBlurSet",
+      "userLogged",
+      "basket"
+    ])
+    // itemAddedPop() {
+    //   return this.basket.lenngth;
+    // }
   },
   methods: {
     ...mapActions(["setBlur"]),
@@ -54,8 +73,7 @@ export default {
   },
   mounted() {
     this.blur();
-  },
-  watch: {}
+  }
 };
 </script>
 

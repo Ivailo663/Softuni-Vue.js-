@@ -37,27 +37,36 @@ export default {
     };
   },
   computed: {
-    ...mapState(["userLogged"])
+    ...mapState(["userLogged", "collectData"])
   },
   methods: {
     ...mapActions(["asdf"]),
-    ...mapMutations(["CHECKING_STATE"]),
+    ...mapMutations(["COLLECT_DATA_LOG"]),
+
     submit() {
       firebase.authtentication
         .signInWithEmailAndPassword(this.form.email, this.form.password)
-        .then(data => {
-          // this.COLLECT_USER(data);
-          console.log(data.user.uid);
-          this.$store.state.isBlurSet = false;
+        .then(user => {
+          firebase.firestore
+            .collection("users")
+            .doc(user.user.uid)
+            .get()
+            .then(doc => {
+              // console.log("the.. doc?", doc.data());
+              this.COLLECT_DATA_LOG(doc.data());
+            });
+
+          // console.log(gettingUser, "userHere?");
+          // console.log(data.user.uid);
+          // this.$store.state.isBlurSet = false;
         })
+
         .catch(function(error) {});
     },
     toRegister() {
       this.$emit("toRegister", this.reg);
     },
-    check() {
-      console.log(this.userLogged);
-    }
+    check() {}
   }
 };
 </script>

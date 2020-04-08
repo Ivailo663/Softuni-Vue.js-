@@ -12,10 +12,7 @@
 }
 
 //general classes
-// .v-snack_content {
-//   display: flex !important;
-//   justify-content: center !important;
-// }
+
 .main {
   transition: 0.4s;
 }
@@ -53,31 +50,6 @@ span i {
   margin: 0.5rem;
   border: 2px solid @color2;
 }
-// .radio-input {
-//   label {
-//     &:after,
-//     &:before {
-//       content: "";
-//       display: block;
-//       width: 22px;
-//       height: 22px;
-//       border-radius: 20rem;
-//       box-sizing: border-box;
-//       position: absolute;
-//       left: 4px;
-//       top: 24px;
-//     }
-//     &:before {
-//       background-color: @color2;
-//       border: 1px solid red;
-//     }
-//     &:after {
-//       background-color: red;
-//       // transform: scale(0);
-//       transition: transform 0.15s ease-out;
-//     }
-//   }
-// }
 
 /* hide the actual input */
 .radio-input input {
@@ -98,7 +70,6 @@ span i {
   font-weight: 700;
 }
 .sizePicked {
-  // background-color: @color2 !important;
   margin-bottom: 0.5rem !important;
   color: @color5 !important;
 }
@@ -149,7 +120,7 @@ span i {
     position: relative;
     img {
       position: absolute;
-      bottom: 1rem;
+      bottom: -6rem;
     }
   }
   .v-responsive {
@@ -186,6 +157,67 @@ span i {
   }
 }
 // !Sidebar
+
+// *? basket
+
+.basket {
+  position: absolute;
+  bottom: -26rem;
+  right: 2.5rem;
+  z-index: 1;
+  background-color: @color3;
+
+  -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+  -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+  padding: 1rem;
+}
+
+.basket-inner {
+  height: 22rem;
+  .row {
+    padding: 1rem;
+    position: relative;
+    .discard-item {
+      position: absolute;
+      top: 0.7rem;
+      right: 2rem;
+      font-size: 1.5rem;
+    }
+  }
+  .basket-image-holder {
+    width: 14rem;
+    img {
+      height: 14rem;
+      width: 100%;
+    }
+  }
+  .info-wrapper {
+    width: 20rem;
+    padding: 1rem;
+    p {
+      font-size: 1.5rem;
+    }
+  }
+  .total {
+    margin: 0 1rem;
+    font-size: 1.5rem;
+  }
+  & > div:last-child {
+    margin: 3rem 0;
+  }
+}
+#break-point {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+p {
+  font-weight: 300;
+}
+
+// *? basket end
 
 //general classes end
 
@@ -317,46 +349,6 @@ span i {
         }
       }
     }
-    // basket section
-    .basket {
-      position: absolute;
-      bottom: -21rem;
-      right: 2.5rem;
-      z-index: 1;
-      background-color: @color3;
-      height: 22rem;
-      overflow: scroll;
-      overflow-x: hidden;
-      -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-      -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-      box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
-      padding: 1rem;
-    }
-    .row {
-      padding: 1rem;
-      position: relative;
-      .discard-item {
-        position: absolute;
-        top: 0.7rem;
-        right: 2rem;
-        font-size: 1.5rem;
-      }
-    }
-    .basket-image-holder {
-      width: 14rem;
-      img {
-        height: 14rem;
-        width: 100%;
-      }
-    }
-    .info-wrapper {
-      width: 20rem;
-      padding: 1rem;
-      p {
-        font-size: 1.5rem;
-      }
-    }
-    // basket section end
   }
   nav {
     background: @color3;
@@ -429,3 +421,72 @@ span i {
 }
 
 //FOOTER SECTION END
+
+.checkout {
+  .container > .row {
+    margin: 5rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid @color2;
+    border-bottom: 1px solid @color2;
+    padding: 0;
+  }
+  .basket-inner {
+    height: 43vh;
+    // overflow-x: hidden;
+    & + div {
+      .number {
+        margin: 0.5rem;
+        font-size: 1.2rem;
+        color: red;
+      }
+      .total {
+        border-top: 1px solid red;
+      }
+    }
+  }
+}
+.order-info {
+  margin: 1rem;
+  width: 80%;
+  input {
+    padding: 1em;
+    height: 3rem;
+    background-color: transparent;
+    border: 0.05rem solid @color1;
+  }
+  label {
+    margin-top: 2rem;
+  }
+  .radio-wrapper {
+    margin-top: 2rem;
+  }
+  .payment-method {
+    margin-top: 2rem;
+    & > :first-child {
+      position: relative;
+      input {
+        position: absolute;
+        top: -9px;
+        right: -35px;
+      }
+      label {
+        margin: 0;
+      }
+    }
+    & > :last-child {
+      margin-left: 3rem;
+      position: relative;
+      input {
+        position: absolute;
+        top: -9px;
+        right: -35px;
+      }
+      label {
+        margin: 0;
+      }
+    }
+  }
+  .btn {
+    margin: 2rem 0;
+  }
+}

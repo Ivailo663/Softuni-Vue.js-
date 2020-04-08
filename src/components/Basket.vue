@@ -31,14 +31,16 @@
 </template>
 
 <script>
+// import { mixin as clickaway } from "vue-clickaway";
 import { mapState } from "vuex";
-import { PerfectScrollbar } from "vue2-perfect-scrollbar";
+import { mixin as clickaway } from "vue-clickaway";
 export default {
   data() {
     return {
       hideBtn: false
     };
   },
+
   name: "Basket",
   computed: {
     ...mapState(["basket"])

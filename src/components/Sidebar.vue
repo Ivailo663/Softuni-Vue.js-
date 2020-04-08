@@ -40,6 +40,14 @@ export default {
   props: ["item"],
   data() {
     return {
+      colors: [
+        "indigo",
+        "warning",
+        "pink darken-2",
+        "red lighten-1",
+        "deep-purple accent-4"
+      ],
+      slides: ["First", "Second", "Third", "Fourth", "Fifth"],
       basket: this.$store.state.basket,
       isSizePicked: false,
       pickedSize: {
@@ -55,11 +63,13 @@ export default {
     closeModal() {
       this.$store.state.isSidebarOpen = false;
       this.pickedSize = null;
+      // this.$emit("clearItem");
     },
     addToBasket(item) {
       if (!this.pickedSize.sizes) {
-        return (this.isSizePicked = true); //Warning to pick size
+        this.isSizePicked = true;
       } else {
+        this.isSizePicked = false;
         this.resultOfBothObj = { ...item, ...this.pickedSize };
         this.basket.push(this.resultOfBothObj);
         this.$store.state.isSidebarOpen = false;
@@ -67,15 +77,8 @@ export default {
       }
     },
     openBasket() {
-      if (this.basket.length > 0) {
+      if (this.basket) {
         this.$store.state.isBasketEmpty = false;
-        console.log(this.basket.length);
-        // for(let i=0; i<=this.basket.length;i++){
-        //   if(this.basket.length[i+])
-        // }
-
-        //The basket is no longer empty,
-        //it can be open
       }
     },
     pickSize(size) {

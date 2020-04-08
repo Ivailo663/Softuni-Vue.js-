@@ -21,13 +21,13 @@
       color="#85c688"
     >You're in!</v-snackbar>-->
     <v-snackbar
-      v-model="itemAddedProp"
+      v-model="itemAddedPop"
       class="snackbar"
       :timeout="1500"
-      center
+      right
       top
-      color="#85c108"
-    >Item added!!</v-snackbar>
+      color="#51a2d8"
+    >View your basket</v-snackbar>
     <FormsContainer v-if="isBlurSet" />
 
     <FormsContainer v-if="isBlurSet" />
@@ -59,11 +59,11 @@ export default {
       "isSidebarOpen",
       "isBlurSet",
       "userLogged",
-      "basket"
-    ])
-    // itemAddedPop() {
-    //   return this.basket.lenngth;
-    // }
+      "isBasketEmpty"
+    ]),
+    itemAddedPop() {
+      return !this.isBasketEmpty;
+    }
   },
   methods: {
     ...mapActions(["setBlur"]),

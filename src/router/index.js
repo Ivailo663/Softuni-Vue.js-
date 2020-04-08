@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Main from "../components/Main";
 import Women from "../views/Women";
-import Outlet from "../views/Outlet";
+
 import Men from "../views/Men";
 import Checkout from "../views/Checkout";
 import store from "../store/index";
@@ -20,11 +20,6 @@ const routes = [
         path: "/home/womenSection",
         name: "Women",
         component: Women,
-      },
-      {
-        path: "/home/outlet",
-        name: "Outlet",
-        component: Outlet,
       },
       {
         path: "/home/menSection",

@@ -316,6 +316,20 @@ p {
   color: #fcfcfc;
   font-size: 2rem;
 }
+.navigation .banner .user-controller ul .shoping-bag {
+  position: relative;
+}
+.navigation .banner .user-controller .items-counter {
+  width: 1.6rem;
+  height: 1.5rem;
+  font-size: 1rem;
+  text-align: center;
+  background-color: #d15656;
+  border-radius: 25px;
+  position: absolute;
+  top: 7px;
+  left: 19px;
+}
 .navigation nav {
   background: #fcfcfc;
   padding: 0;

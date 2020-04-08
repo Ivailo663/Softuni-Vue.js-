@@ -47,18 +47,14 @@ export default {
       firebase.authtentication
         .signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(user => {
+          this.$store.state.isBlurSet = false;
           firebase.firestore
             .collection("users")
             .doc(user.user.uid)
             .get()
             .then(doc => {
-              // console.log("the.. doc?", doc.data());
               this.COLLECT_DATA_LOG(doc.data());
             });
-
-          // console.log(gettingUser, "userHere?");
-          // console.log(data.user.uid);
-          // this.$store.state.isBlurSet = false;
         })
 
         .catch(function(error) {});

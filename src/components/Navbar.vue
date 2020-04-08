@@ -11,6 +11,7 @@
         <ul class="d-flex">
           <li @click="openBasket" class="shoping-bag">
             <i class="fa fa-shopping-bag"></i>
+            <div class="items-counter" v-if="!isBasketEmpty">{{basket.length}}</div>
           </li>
           <li class="login" @click="openForm" v-if="!userLogged">
             <i class="fa fa-sign-in-alt"></i>
@@ -32,7 +33,7 @@
           </li>
         </ul>
       </div>
-      <div class="basket" v-if="open">
+      <div class="basket" v-if="open" v-on-clickaway="closeBasket">
         <Basket />
       </div>
     </div>
@@ -48,19 +49,20 @@ import { mapGetters, mapState, mapActions } from "vuex";
 import { PerfectScrollbar } from "vue2-perfect-scrollbar";
 import firebase from "../firebaseInit";
 import Basket from "./Basket";
+import { mixin as clickaway } from "vue-clickaway";
 export default {
   name: "Navbar",
   data() {
     return {
       categories: [
         { id: 0, name: "men", route: "/menSection" },
-        { id: 1, name: "women", route: "/womenSection" },
-        { id: 2, name: "outlet", route: "/outlet" }
+        { id: 1, name: "women", route: "/womenSection" }
       ],
       timeOut: null,
       open: false
     };
   },
+  mixins: [clickaway],
   computed: {
     ...mapState(["basket", "isBasketEmpty", "isSidebarOpen", "userLogged"])
   },
@@ -93,6 +95,9 @@ export default {
         .catch(function(error) {
           // An error happened.
         });
+    },
+    closeBasket() {
+      this.open = false;
     }
   },
   watch: {

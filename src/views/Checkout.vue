@@ -52,7 +52,7 @@
 
                     <div class="info-wrapper">
                       <h3>{{item.brand}}</h3>
-                      <p>{{item.sizes}}</p>
+                      <p>size {{item.sizes}}</p>
                       <p class="price">{{item.price}} $</p>
                     </div>
                   </div>
@@ -64,7 +64,10 @@
             <div class="number-total-container d-flex justify-content-center">
               <p class="number">number of items: {{basket.length}}</p>
               <div class="devider"></div>
-              <p class="total, price">Total: 123$</p>
+              <p class="total">
+                Total:
+                <span class=", price">123$</span>
+              </p>
             </div>
           </div>
         </div>

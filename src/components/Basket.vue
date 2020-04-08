@@ -12,7 +12,7 @@
 
           <div class="info-wrapper">
             <h3>{{item.brand}}</h3>
-            <p>{{item.sizes}}</p>
+            <p>size {{item.sizes}}</p>
             <p class="price">{{item.price}} $</p>
           </div>
         </div>

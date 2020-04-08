@@ -27,7 +27,7 @@
       right
       top
       color="#51a2d8"
-    >View your basket</v-snackbar>
+    >Basket updated</v-snackbar>
     <FormsContainer v-if="isBlurSet" />
 
     <FormsContainer v-if="isBlurSet" />

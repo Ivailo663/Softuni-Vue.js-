@@ -13,7 +13,7 @@
           <div class="info-wrapper">
             <h3>{{item.brand}}</h3>
             <div class="model-wrapper">
-              <h5>{{item.model}}</h5>
+              <p>{{item.model}}</p>
             </div>
 
             <div class="sneakers-buttons-wrapper">
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div :class="{layer:isSidebarOpen}"></div>
-    <Sidebar :item="this.itemProp" />
+    <Sidebar :item="this.itemProp" v-if="isSidebarOpen" />
     <Loading :active.sync="isLoading"></Loading>
   </div>
 </template>

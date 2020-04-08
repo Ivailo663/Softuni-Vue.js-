@@ -65,7 +65,7 @@ export default new Vuex.Store({
       if (localStorage.userLogged == "false") {
         setTimeout(() => {
           state.isBlurSet = true;
-        }, 7000);
+        }, 4000);
       } else {
       }
     },

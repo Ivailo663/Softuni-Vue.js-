@@ -7,8 +7,17 @@
   padding: 0;
   box-sizing: border-box;
 }
-.main {
-  transition: 0.4s;
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+li {
+  color: #423b3a;
+}
+.active {
+  color: #423b3a;
 }
 .blur {
   filter: blur(6px);
@@ -155,7 +164,7 @@ i {
   padding: 1rem;
 }
 .basket-inner {
-  height: 22rem;
+  height: 19rem;
 }
 .basket-inner .row {
   padding: 1rem;
@@ -197,6 +206,10 @@ i {
 p {
   font-weight: 300;
 }
+.checkout {
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
 .success {
   position: absolute;
   top: 50%;
@@ -213,6 +226,14 @@ p {
 }
 .success .left img {
   width: 10rem;
+}
+@media (max-width: 768px) {
+  .success .left .success {
+    width: 96vw;
+  }
+  .success .left .img {
+    width: 6rem;
+  }
 }
 .success .right {
   width: 100%;
@@ -234,6 +255,9 @@ p {
 }
 hr {
   width: 100%;
+}
+a {
+  text-decoration: none !important;
 }
 .form {
   width: 100%;
@@ -354,6 +378,36 @@ hr {
 .navigation .banner .user-controller ul li i {
   color: #fcfcfc;
   font-size: 2rem;
+  position: relative;
+}
+.navigation .banner .user-controller ul li .dropdownMenu {
+  border: 1px solid #e1dede;
+  z-index: 20;
+  background-color: #fff;
+  position: absolute;
+  bottom: -6rem;
+  left: -2rem;
+  border-radius: 9px;
+}
+.navigation .banner .user-controller ul li .dropdownMenu hr {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+.navigation .banner .user-controller ul li .dropdownMenu p {
+  color: #151313;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 0;
+}
+.navigation .banner .user-controller ul li .dropdownMenu a button {
+  width: 5em;
+}
+.navigation .banner .user-controller ul li .dropdownMenu a button:hover p {
+  text-decoration: none !important;
+}
+.navigation .banner .user-controller ul li .dropdownMenu .logout {
+  margin-left: 2.7rem;
+  margin-bottom: 1rem;
 }
 .navigation .banner .user-controller ul .shoping-bag {
   position: relative;
@@ -370,24 +424,34 @@ hr {
   left: 19px;
 }
 .navigation nav {
-  background: #fcfcfc;
+  background: #67e0d2;
   padding: 0;
 }
 .navigation nav ul {
   list-style: none;
+  text-transform: uppercase;
   margin: 0;
 }
 .navigation nav ul li {
   margin: 1rem;
-  color: #151313;
+  color: #fcfcfc;
   font-size: 1.2rem;
   font-weight: 500;
+}
+.navigation nav ul li:hover {
+  transform: scale(1.1);
+  transition: 0.2s ease-in-out;
+}
+.navigation nav ul li a {
+  color: #fcfcfc;
 }
 .sneakers {
   margin: 10rem 0;
 }
 .sneakers-inner {
   margin: 1rem 0;
+  padding: 1rem 1rem;
+  border: 1px solid #151313;
 }
 .sneakers-inner .sneakers-image-holder {
   width: 100%;
@@ -410,6 +474,9 @@ hr {
 }
 .info-wrapper .model-wrapper {
   min-height: 6rem;
+}
+.sneakers-buttons-wrapper {
+  margin: 2rem 0;
 }
 .footer {
   background-color: #151313;

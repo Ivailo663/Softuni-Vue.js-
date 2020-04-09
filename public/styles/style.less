@@ -10,12 +10,20 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+li {
+  color: @color1;
+}
+.active {
+  color: @color1;
+}
 //general classes
 
-.main {
-  transition: 0.4s;
-}
 .blur {
   filter: blur(6px);
 }
@@ -175,7 +183,7 @@ i {
 }
 
 .basket-inner {
-  height: 22rem;
+  height: 19rem;
   .row {
     padding: 1rem;
     position: relative;
@@ -217,6 +225,10 @@ i {
 p {
   font-weight: 300;
 }
+.checkout {
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
 
 // *? basket end
 
@@ -234,6 +246,14 @@ p {
     margin: 0;
     img {
       width: 10rem;
+    }
+    @media (max-width: 768px) {
+      .success {
+        width: 96vw;
+      }
+      .img {
+        width: 6rem;
+      }
     }
   }
   .right {
@@ -259,6 +279,9 @@ p {
 }
 hr {
   width: 100%;
+}
+a {
+  text-decoration: none !important;
 }
 //general classes end
 
@@ -382,10 +405,41 @@ hr {
           color: @color3;
           font-size: 2rem;
           margin: 1rem;
+
           font-weight: bold;
           i {
             color: @color3;
             font-size: 2rem;
+            position: relative;
+          }
+          .dropdownMenu {
+            border: 1px solid #e1dede;
+            z-index: 20;
+            background-color: #fff;
+            position: absolute;
+            bottom: -6rem;
+            left: -2rem;
+            border-radius: 9px;
+            hr {
+              margin-top: 0.5rem;
+              margin-bottom: 0;
+            }
+            p {
+              color: #151313;
+              font-size: 1.4rem;
+              font-weight: 400;
+              margin: 0;
+            }
+            a button {
+              width: 5em;
+              &:hover p {
+                text-decoration: none !important;
+              }
+            }
+            .logout {
+              margin-left: 2.7rem;
+              margin-bottom: 1rem;
+            }
           }
         }
         .shoping-bag {
@@ -406,16 +460,24 @@ hr {
     }
   }
   nav {
-    background: @color3;
+    background: @color4;
     padding: 0;
     ul {
       list-style: none;
+      text-transform: uppercase;
       margin: 0;
       li {
         margin: 1rem;
-        color: @color2;
+        color: @color3;
         font-size: 1.2rem;
         font-weight: 500;
+        &:hover {
+          transform: scale(1.1);
+          transition: 0.2s ease-in-out;
+        }
+        a {
+          color: @color3;
+        }
       }
     }
   }
@@ -425,6 +487,8 @@ hr {
 }
 .sneakers-inner {
   margin: 1rem 0;
+  padding: 1rem 1rem;
+  border: 1px solid @color2;
   .sneakers-image-holder {
     width: 100%;
     img {
@@ -448,6 +512,9 @@ hr {
   .model-wrapper {
     min-height: 6rem;
   }
+}
+.sneakers-buttons-wrapper {
+  margin: 2rem 0;
 }
 //MAIN SECTION END
 

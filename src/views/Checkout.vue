@@ -11,17 +11,20 @@
         <div class="col-lg-6">
           <div class="order-info">
             <form class="d-flex flex-column" @submit.prevent="submitOrder">
-              <label for="name">Name</label>
-              <input type="text" id="name" v-model="info.firstName" />
+              <label for="firstNameOrder">First Name</label>
+              <input type="text" id="firstNameOrder" v-model="info.firstName" />
 
-              <label for="phone">Phone number</label>
-              <input type="text" id="phone" v-model="info.phone" />
+              <label for="lastNameOrder">Last Name</label>
+              <input type="text" id="lastNameOrder" v-model="info.lastName" />
+
+              <label for="phoneOrder">Phone number</label>
+              <input type="text" id="phoneOrder" v-model="info.phone" />
 
               <label for="e-mail">E-mail</label>
               <input type="text" id="e-mail" v-model="info.email" />
 
-              <label for="addres">Addres</label>
-              <input type="text" id="addres" v-model="info.address" />
+              <label for="addresOrder">Addres</label>
+              <input type="text" id="addresOrder" v-model="info.address" />
 
               <div class="payment-method d-flex">
                 <div>
@@ -39,7 +42,12 @@
                   </label>
                 </div>
               </div>
-              <button class="btn btn-dark button-basic" type="submit">Submit</button>
+              <button class="btn btn-dark button-basic" type="submit">
+                Submit
+                <!-- <div class="spinner-border text-light" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>-->
+              </button>
             </form>
           </div>
         </div>
@@ -50,8 +58,8 @@
               <div class="basket-inner">
                 <div v-for="(item,index) in basket" :key="index">
                   <div class="row">
-                    <span class="discard-item">
-                      <i class="fa fa-times-circle"></i>
+                    <span class="discard-item" @click="discardItem(index)">
+                      <i class="fas fa-trash-alt"></i>
                     </span>
                     <figure class="basket-image-holder">
                       <img :src="item.src" :alt="item.brand" />
@@ -93,7 +101,13 @@ import firebase from "../firebaseInit";
 export default {
   data() {
     return {
-      info: {},
+      info: {
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        address: ""
+      },
       orderSubmitted: false
     };
   },
@@ -102,9 +116,6 @@ export default {
   },
   computed: {
     ...mapState(["basket", "collectDataLogged", "uid"])
-    // info() {
-    //   return this.collectDataLogged;
-    // },
   },
   methods: {
     userInfoCall() {
@@ -113,19 +124,21 @@ export default {
         .doc(this.uid)
         .get()
         .then(doc => {
-          // this.COLLECT_DATA_LOG(doc.data());
           this.info = doc.data();
-          console.log(this.info, "and here?");
         });
     },
     async submitOrder() {
       await setTimeout(() => {
         this.orderSubmitted = true;
+        this.$store.state.basket = [];
       }, 2000);
+    },
+    discardItem(index) {
+      this.basket.splice(index, 1);
     }
   },
+
   mounted() {
-    // console.log(this.collectDataLogged, "is that true?");
     this.userInfoCall();
   }
 };

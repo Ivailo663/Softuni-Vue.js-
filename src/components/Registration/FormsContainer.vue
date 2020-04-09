@@ -4,11 +4,13 @@
       <span class="discard-item" @click="closeForm">
         <i class="fa fa-times-circle"></i>
       </span>
-      <component
-        :is="currentComponent"
-        @toRegister="toRegister($event)"
-        @toLogin="toLogin($event)"
-      />
+      <transition name="fade" mode="out-in">
+        <component
+          :is="currentComponent"
+          @toRegister="toRegister($event)"
+          @toLogin="toLogin($event)"
+        />
+      </transition>
     </div>
   </div>
 </template>
@@ -41,5 +43,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

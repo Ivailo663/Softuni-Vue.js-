@@ -30,6 +30,7 @@
       top
       color="#51a2d8"
     >Basket updated</v-snackbar>
+
     <FormsContainer v-if="isBlurSet" />
   </div>
 </template>

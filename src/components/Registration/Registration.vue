@@ -116,7 +116,9 @@ export default {
               .set({
                 firstName: this.form.firstName,
                 lastName: this.form.lastName,
-                email: this.form.email
+                email: this.form.email,
+                address: "",
+                phone: ""
               });
           })
           .catch(error => {

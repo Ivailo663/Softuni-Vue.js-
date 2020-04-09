@@ -16,23 +16,21 @@
           <li class="login" @click="openForm" v-if="!userLogged">
             <i class="fa fa-sign-in-alt"></i>
           </li>
-          <li
-            class="login"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            v-else
-          >
+          <li class="login" @click="dropDownToggle" v-else>
             <i class="fa fa-user"></i>
 
-            <div class="dropdown-menu">
+            <div v-if="dropDownOpen" class="dropdownMenu" v-on-clickaway="dropDownToggle">
               <!-- Dropdown menu links -->
 
               <router-link to="/userProfile">
-                <button class="dropdown-item" type="button">Profile</button>
+                <button>
+                  <p>Profile</p>
+                </button>
               </router-link>
-
-              <button class="dropdown-item" type="button" @click="signOut">Log out</button>
+              <hr />
+              <button type="button" class="logout" @click="signOut">
+                <p>Log out</p>
+              </button>
             </div>
           </li>
         </ul>
@@ -42,8 +40,17 @@
       </div>
     </div>
     <nav class="navbar d-flex justify-content-center">
-      <ul class="d-flex justify-content-center" v-for="category in categories" :key="category.key">
-        <router-link tag="li" :to="`/home${category.route}`">{{category.name}}</router-link>
+      <ul class="d-flex justify-content-center">
+        <li
+          v-for="(category,index) in categories"
+          :key="category.key"
+          @click="selectedCategory(index)"
+        >
+          <router-link
+            :to="`/home${category.route}`"
+            :class="{active: index===selected}"
+          >{{category.name}}</router-link>
+        </li>
       </ul>
     </nav>
   </div>
@@ -64,7 +71,9 @@ export default {
         { id: 1, name: "women", route: "/womenSection" }
       ],
       timeOut: null,
-      open: false
+      open: false,
+      dropDownOpen: false,
+      selected: 0
     };
   },
   computed: {
@@ -79,7 +88,7 @@ export default {
       this.closeBasket();
     },
     openBasket() {
-      if (this.isBasketEmpty) {
+      if (this.isBasketEmpty || this.basket.length == 0) {
         this.open = false;
       } else {
         this.open = true;
@@ -94,7 +103,6 @@ export default {
         .then(() => {
           this.$store.state.userLogged = false;
           localStorage.removeItem("userLogged");
-          console.log("SIGNED OUT!");
         })
         .catch(function(error) {
           // An error happened.
@@ -102,17 +110,23 @@ export default {
     },
     closeBasket() {
       this.open = false;
+    },
+    dropDownToggle() {
+      this.dropDownOpen = !this.dropDownOpen;
+    },
+    selectedCategory(index) {
+      this.selected = index;
     }
   },
-  watch: {
-    isBasketEmpty: {
-      handler: function(oldVal, newVal) {
-        console.log(`isBasketEmpty changed from ${newVal} to ${oldVal}`);
-        // this.closingBasket();
-      }
-    }
-  }
+  watch: {}
 };
 </script>
 <style >
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

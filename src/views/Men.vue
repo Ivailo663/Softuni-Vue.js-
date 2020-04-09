@@ -14,10 +14,10 @@
             <h3>{{item.brand}}</h3>
             <div class="model-wrapper">
               <p>{{item.model}}</p>
+              <p class="price">{{item.price}} $</p>
             </div>
 
-            <div class="sneakers-buttons-wrapper">
-              <p class="price">{{item.price}} $</p>
+            <div class="sneakers-buttons-wrapper d-flex flex-column align-items-center">
               <button class="btn btn-dark basic-btn" @click="openModal(item)">View</button>
             </div>
           </div>

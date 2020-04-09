@@ -4,7 +4,7 @@
       <img src="../assets/icons/checked.png" alt />
     </figure>
     <div class="right d-flex align-items-center justify-content-center">
-      <h3>Successful!</h3>
+      <h4>Your order is successful!</h4>
     </div>
   </div>
 </template>

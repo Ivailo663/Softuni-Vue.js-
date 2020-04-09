@@ -7,7 +7,7 @@
           Back to store
         </router-link>
       </div>
-      <form class="d-flex flex-column align-items-center">
+      <form class="d-flex flex-column align-items-center" @submit="submitChanges">
         <h3>Info:</h3>
 
         <div class="d-flex flex-column user-info">
@@ -70,7 +70,7 @@
 
           <div class="input-holder">
             <label for="addressEdit">Address</label>
-            <input type="text" id="addressEdit" />
+            <input type="text" id="addressEdit" v-model="form.address" />
             <span>
               <label for="addressEdit">
                 <i class="far fa-edit"></i>
@@ -83,7 +83,7 @@
         <div class="d-flex flex-column card-details">
           <div class="input-holder">
             <label for="cardNumber">Card number</label>
-            <input type="text" id="cardNumber" />
+            <input type="text" id="cardNumber" disabled />
             <span>
               <label for="cardNumber">
                 <i class="far fa-edit"></i>
@@ -94,7 +94,7 @@
           <div class="d-flex">
             <div class="input-holder">
               <label for="expireDate">Expire Date</label>
-              <input type="text" id="expireDate" />
+              <input type="text" id="expireDate" disabled />
               <span>
                 <label for="expireDate">
                   <i class="far fa-edit"></i>
@@ -104,7 +104,7 @@
 
             <div class="input-holder">
               <label for="cvv">CVV</label>
-              <input type="text" id="cvv" />
+              <input type="text" id="cvv" disabled />
               <span>
                 <label for="cvv">
                   <i class="far fa-edit"></i>
@@ -140,7 +140,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["collectData"])
+    ...mapState(["collectData", "uid"])
   },
   validations: {
     form: {
@@ -180,6 +180,27 @@ export default {
         }
       }
     }
+  },
+  methods: {
+    userInfoCall() {
+      firebase.firestore
+        .collection("users")
+        .doc(this.uid)
+        .get()
+        .then(doc => {
+          this.form = Object.assign({}, this.form, doc.data());
+        });
+    },
+    submitChanges() {
+      firebase.firestore
+        .collection("users")
+        .doc(this.uid)
+        .update(this.form)
+        .then(() => {});
+    }
+  },
+  mounted() {
+    this.userInfoCall();
   }
 };
 </script>

@@ -29,15 +29,15 @@ export default {
         email: "",
         password: ""
       },
-      reg: "Registration",
-      user: {
-        email: "",
-        ID: ""
-      }
+      reg: "Registration"
+      // user: {
+      //   email: "",
+      //   ID: ""
+      // }
     };
   },
   computed: {
-    ...mapState(["userLogged", "collectData"])
+    ...mapState(["userLogged", "collectData", "uid"])
   },
   methods: {
     ...mapActions(["asdf"]),
@@ -48,6 +48,8 @@ export default {
         .signInWithEmailAndPassword(this.form.email, this.form.password)
         .then(user => {
           this.$store.state.isBlurSet = false;
+          localStorage.setItem("uid", user.user.uid);
+          this.$store.state.uid = localStorage.uid;
           firebase.firestore
             .collection("users")
             .doc(user.user.uid)

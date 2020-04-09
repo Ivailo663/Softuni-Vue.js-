@@ -21,13 +21,17 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-            v-if="userLogged"
+            v-else
           >
             <i class="fa fa-user"></i>
 
             <div class="dropdown-menu">
               <!-- Dropdown menu links -->
-              <button class="dropdown-item" type="button">Profile</button>
+
+              <router-link to="/userProfile">
+                <button class="dropdown-item" type="button">Profile</button>
+              </router-link>
+
               <button class="dropdown-item" type="button" @click="signOut">Log out</button>
             </div>
           </li>
@@ -51,6 +55,7 @@ import firebase from "../firebaseInit";
 import Basket from "./Basket";
 import { mixin as clickaway } from "vue-clickaway";
 export default {
+  mixins: [clickaway],
   name: "Navbar",
   data() {
     return {
@@ -62,7 +67,6 @@ export default {
       open: false
     };
   },
-  mixins: [clickaway],
   computed: {
     ...mapState(["basket", "isBasketEmpty", "isSidebarOpen", "userLogged"])
   },

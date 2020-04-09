@@ -23,7 +23,8 @@
 }
 li span,
 li,
-span i {
+span i,
+i {
   cursor: pointer;
 }
 .radio-input {
@@ -195,6 +196,44 @@ span i {
 }
 p {
   font-weight: 300;
+}
+.success {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 37vw;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.34);
+  -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.34);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.34);
+  padding: 2rem;
+}
+.success .left {
+  margin: 0;
+}
+.success .left img {
+  width: 10rem;
+}
+.success .right {
+  width: 100%;
+}
+.go-back p {
+  margin: 0.6rem 2rem;
+  position: relative;
+  cursor: pointer;
+}
+.go-back i {
+  position: absolute;
+  bottom: 3px;
+  left: -17px;
+}
+.err {
+  color: #f66c6c;
+  font-size: 0.8rem;
+  margin: 0;
+}
+hr {
+  width: 100%;
 }
 .form {
   width: 100%;
@@ -370,7 +409,7 @@ p {
   padding: 0.5rem;
 }
 .info-wrapper .model-wrapper {
-  min-height: 4rem;
+  min-height: 6rem;
 }
 .footer {
   background-color: #151313;
@@ -403,7 +442,7 @@ p {
   color: #67e0d2;
 }
 .checkout .container > .row {
-  margin: 5rem 0;
+  margin: 0 0 5rem 0;
   padding: 2rem 0;
   border-top: 1px solid #151313;
   border-bottom: 1px solid #151313;
@@ -464,4 +503,70 @@ p {
 }
 .order-info .btn {
   margin: 2rem 0;
+}
+.dashboard {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../src/assets/banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.dashboard .go-back {
+  position: absolute;
+  top: -2.8rem;
+  left: 0;
+}
+.dashboard .go-back p,
+.dashboard .go-back i {
+  color: #fff;
+}
+.dashboard .inner {
+  padding: 2rem;
+  position: relative;
+  width: 80%;
+  border-radius: 25px;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+  -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
+}
+.dashboard .inner h3 {
+  font-weight: 300;
+}
+.dashboard .inner form .user-info {
+  width: 34vw;
+  margin-bottom: 3rem;
+}
+.dashboard .inner form .card-details {
+  width: 33vw;
+}
+@media (max-width: 768px) {
+  .dashboard .inner form .user-info {
+    width: 62vw;
+  }
+  .dashboard .inner form .card-details {
+    width: 57vw;
+  }
+}
+.dashboard .inner .input-holder {
+  position: relative;
+  margin: 0 1rem;
+}
+.dashboard .inner .input-holder span {
+  position: absolute;
+  right: 13px;
+  top: 42px;
+}
+.dashboard .inner label {
+  color: #423b3a;
+  font-size: 0.7rem;
+  margin: 0.5rem 0;
+}
+.dashboard .inner input {
+  padding: 1em;
+  height: 3rem;
+  width: 100%;
+  background: transparent;
+  border: 0.05rem solid #423b3a;
 }

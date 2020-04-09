@@ -2,9 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Main from "../components/Main";
 import Women from "../views/Women";
-
 import Men from "../views/Men";
 import Checkout from "../views/Checkout";
+import Dashboard from "../views/Dashboard";
 import store from "../store/index";
 
 Vue.use(VueRouter);
@@ -32,9 +32,19 @@ const routes = [
     path: "/checkout",
     name: "Checkout",
     component: Checkout,
-    // meta: {
-    //   requiresAuth: true,
-    // },
+    meta: {
+      requiresAuth: true,
+      transition: "flip-y",
+    },
+  },
+  {
+    path: "/userProfile",
+    name: "Dashboard",
+    component: Dashboard,
+    meta: {
+      // requiresAuth: true,
+      transition: "flip-y",
+    },
   },
 ];
 

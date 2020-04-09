@@ -2,7 +2,9 @@
   <div class="main" :class="{marginRight:isSidebarOpen}">
     <div :class="{blur:isBlurSet}">
       <Navbar />
-      <router-view></router-view>
+      <vue-page-transition name="fade">
+        <router-view />
+      </vue-page-transition>
       <div class="social-media-fixed d-flex flex-column" v-if="this.isMediaShown">
         <div class="media facebook"></div>
         <div class="media pinterest"></div>
@@ -12,14 +14,14 @@
       </div>
       <Footer />
     </div>
-    <!-- <v-snackbar
+    <v-snackbar
       v-model="userLogged"
       class="snackbar"
       :timeout="1500"
       center
       top
       color="#85c688"
-    >You're in!</v-snackbar>-->
+    >You're in!</v-snackbar>
     <v-snackbar
       v-model="itemAddedPop"
       class="snackbar"
@@ -28,8 +30,6 @@
       top
       color="#51a2d8"
     >Basket updated</v-snackbar>
-    <FormsContainer v-if="isBlurSet" />
-
     <FormsContainer v-if="isBlurSet" />
   </div>
 </template>
@@ -54,15 +54,9 @@ export default {
     FormsContainer
   },
   computed: {
-    ...mapState([
-      "isMediaShown",
-      "isSidebarOpen",
-      "isBlurSet",
-      "userLogged",
-      "isBasketEmpty"
-    ]),
+    ...mapState(["isMediaShown", "isSidebarOpen", "isBlurSet", "userLogged"]),
     itemAddedPop() {
-      return !this.isBasketEmpty;
+      return !this.$store.state.isBasketEmpty;
     }
   },
   methods: {

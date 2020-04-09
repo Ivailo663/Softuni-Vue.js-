@@ -21,7 +21,7 @@
 
       <div class="d-flex justify-content-between">
         <router-link to="/checkout">
-          <button class="btn btn-dark basic-btn">Checkout</button>
+          <button class="btn btn-dark basic-btn" @click="protectRoute">Checkout</button>
         </router-link>
 
         <p class="total price">Total: 123$</p>
@@ -31,9 +31,8 @@
 </template>
 
 <script>
-// import { mixin as clickaway } from "vue-clickaway";
 import { mapState } from "vuex";
-import { mixin as clickaway } from "vue-clickaway";
+
 export default {
   data() {
     return {
@@ -43,7 +42,12 @@ export default {
 
   name: "Basket",
   computed: {
-    ...mapState(["basket"])
+    ...mapState(["basket", "userLogged"])
+  },
+  methods: {
+    protectRoute() {
+      !this.userLogged ? (this.$store.state.isBlurSet = true) : null;
+    }
   }
 };
 </script>

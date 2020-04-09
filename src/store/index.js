@@ -11,18 +11,8 @@ export default new Vuex.Store({
     isBlurSet: false,
     userData: null,
     basket: [],
-    userLogged: false,
-    collectData: {
-      user: null,
-      email: null,
-      uid: null,
-    },
-    collectDataLogged: {
-      address: null,
-      email: null,
-      phone: null,
-      name: null,
-    },
+    userLogged: false || localStorage.getItem("userLogged"),
+    uid: localStorage.getItem("uid") || "",
   },
 
   mutations: {
@@ -65,7 +55,7 @@ export default new Vuex.Store({
       if (localStorage.userLogged == "false") {
         setTimeout(() => {
           state.isBlurSet = true;
-        }, 4000);
+        }, 3000);
       } else {
       }
     },

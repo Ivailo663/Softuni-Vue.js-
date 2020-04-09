@@ -1,21 +1,27 @@
 <template>
   <div class="checkout">
     <div class="container">
-      <div class="row">
+      <div class="go-back d-flex">
+        <router-link tag="p" to="/home/menSection">
+          <i class="fas fa-chevron-left"></i>
+          Back to store
+        </router-link>
+      </div>
+      <div class="row" v-if="!orderSubmitted">
         <div class="col-lg-6">
           <div class="order-info">
-            <form class="d-flex flex-column">
-              <label for="firstName">First name</label>
-              <input type="text" id="firstName" />
+            <form class="d-flex flex-column" @submit.prevent="submitOrder">
+              <label for="name">Name</label>
+              <input type="text" id="name" v-model="info.firstName" />
 
-              <label for="lastName">Last name</label>
-              <input type="text" id="lastName" />
+              <label for="phone">Phone number</label>
+              <input type="text" id="phone" v-model="info.phone" />
 
-              <label for="email">E-mail</label>
-              <input type="text" id="email" />
+              <label for="e-mail">E-mail</label>
+              <input type="text" id="e-mail" v-model="info.email" />
 
               <label for="addres">Addres</label>
-              <input type="text" id="addres" />
+              <input type="text" id="addres" v-model="info.address" />
 
               <div class="payment-method d-flex">
                 <div>
@@ -33,13 +39,14 @@
                   </label>
                 </div>
               </div>
-              <button class="btn btn-dark button-basic">Submit</button>
+              <button class="btn btn-dark button-basic" type="submit">Submit</button>
             </form>
           </div>
         </div>
         <div class="col-lg-6 d-flex align-items-center">
           <div class="order-list d-flex flex-column">
             <perfect-scrollbar>
+              <h4>Your items:</h4>
               <div class="basket-inner">
                 <div v-for="(item,index) in basket" :key="index">
                   <div class="row">
@@ -72,6 +79,7 @@
           </div>
         </div>
       </div>
+      <Success v-else />
     </div>
   </div>
 </template>
@@ -79,14 +87,46 @@
 <script>
 import { PerfectScrollbar } from "vue2-perfect-scrollbar";
 import { mapState } from "vuex";
+import Success from "../components/Success";
+import firebase from "../firebaseInit";
 
 export default {
   data() {
-    return {};
+    return {
+      info: {},
+      orderSubmitted: false
+    };
   },
-  components: {},
+  components: {
+    Success
+  },
   computed: {
-    ...mapState(["basket"])
+    ...mapState(["basket", "collectDataLogged", "uid"])
+    // info() {
+    //   return this.collectDataLogged;
+    // },
+  },
+  methods: {
+    userInfoCall() {
+      firebase.firestore
+        .collection("users")
+        .doc(this.uid)
+        .get()
+        .then(doc => {
+          // this.COLLECT_DATA_LOG(doc.data());
+          this.info = doc.data();
+          console.log(this.info, "and here?");
+        });
+    },
+    async submitOrder() {
+      await setTimeout(() => {
+        this.orderSubmitted = true;
+      }, 2000);
+    }
+  },
+  mounted() {
+    // console.log(this.collectDataLogged, "is that true?");
+    this.userInfoCall();
   }
 };
 </script>

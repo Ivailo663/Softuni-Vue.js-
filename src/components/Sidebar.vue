@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar" :class="{offsetRight:isSidebarOpen}">
+  <div class="sidebar" :class="{offsetRight:isSidebarOpen}" v-on-clickaway="closeModal">
     <span class="discard-item" @click="closeModal">
       <i class="fa fa-times-circle"></i>
     </span>
@@ -35,8 +35,10 @@
 </template>
 
 <script>
+import { mixin as clickaway } from "vue-clickaway";
 import { mapState } from "vuex";
 export default {
+  mixins: [clickaway],
   name: "Sidebar",
   props: ["item"],
   data() {
@@ -57,6 +59,7 @@ export default {
       resultOfBothObj: null
     };
   },
+
   computed: {
     ...mapState(["isMediaShown", "isSidebarOpen", "isBasketEmpty"])
   },

@@ -11,6 +11,9 @@ import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 import PerfectScrollbar from "vue2-perfect-scrollbar";
 import "vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css";
+import VuePageTransition from "vue-page-transition";
+
+Vue.use(VuePageTransition);
 
 Vue.use(PerfectScrollbar);
 
@@ -20,5 +23,6 @@ new Vue({
   router,
   store,
   vuetify: new Vuetify(),
+  VuePageTransition,
   render: (h) => h(App),
 }).$mount("#app");

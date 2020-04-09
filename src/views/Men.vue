@@ -26,7 +26,7 @@
     </div>
     <div :class="{layer:isSidebarOpen}"></div>
     <Sidebar :item="itemProp" @clearItem="clearingItem" v-if="isSidebarOpen" />
-    <Loading :active.sync="isLoading"></Loading>
+    <!-- <Loading :active.sync="isLoading"></Loading> -->
   </div>
 </template>
 

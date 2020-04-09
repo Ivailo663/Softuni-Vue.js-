@@ -10,6 +10,7 @@ export default new Vuex.Store({
     isBasketEmpty: true,
     isBlurSet: false,
     userData: null,
+    welcomeUser: localStorage.getItem("welcomeUser") || "",
     basket: [],
     userLogged: false || localStorage.getItem("userLogged"),
     uid: localStorage.getItem("uid") || "",
@@ -20,30 +21,30 @@ export default new Vuex.Store({
       state.userLogged = payload;
       localStorage.setItem("userLogged", payload);
     },
-    COLLECT_DATA_REG: (state, data) => {
-      let payloadObjet = {
-        email: data.email,
-        user: data.displayName,
-        uid: data.uid,
-      };
+    // COLLECT_DATA_REG: (state, data) => {
+    //   let payloadObjet = {
+    //     email: data.email,
+    //     user: data.displayName,
+    //     uid: data.uid,
+    //   };
 
-      state.collectData = Object.assign({}, state.collectData, payloadObjet);
-      console.log(state.collectData);
-    },
-    COLLECT_DATA_LOG: (state, data) => {
-      let payloadObject = {
-        email: data.email,
-        name: data.name,
-        phone: data.phone,
-        address: data.address,
-      };
-      state.collectDataLogged = Object.assign(
-        {},
-        state.collectDataLogged,
-        payloadObject
-      );
-      console.log(state.collectDataLogged, "collected when logged!");
-    },
+    //   state.collectData = Object.assign({}, state.collectData, payloadObjet);
+    //   console.log(state.collectData);
+    // },
+    // COLLECT_DATA_LOG: (state, data) => {
+    //   let payloadObject = {
+    //     email: data.email,
+    //     name: data.name,
+    //     phone: data.phone,
+    //     address: data.address,
+    //   };
+    //   state.collectDataLogged = Object.assign(
+    //     {},
+    //     state.collectDataLogged,
+    //     payloadObject
+    //   );
+    //   console.log(state.collectDataLogged, "collected when logged!");
+    // },
   },
   actions: {
     closeBasket({ state }) {

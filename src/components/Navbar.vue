@@ -1,6 +1,7 @@
 <template>
   <div class="navigation">
     <div class="banner">
+      <p class="hello-message" v-if="userLogged">Hello, {{welcomeUser}}!</p>
       <div class="landing-msg d-flex flex-column align-items-center">
         <h1>
           Welcome to
@@ -44,12 +45,12 @@
         <li
           v-for="(category,index) in categories"
           :key="category.key"
+          :class="{active: index===selected}"
           @click="selectedCategory(index)"
         >
-          <router-link
-            :to="`/home${category.route}`"
-            :class="{active: index===selected}"
-          >{{category.name}}</router-link>
+          <router-link :to="`/home${category.route}`">
+            <p :class="{activeColor: index===selected}">{{category.name}}</p>
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -77,7 +78,13 @@ export default {
     };
   },
   computed: {
-    ...mapState(["basket", "isBasketEmpty", "isSidebarOpen", "userLogged"])
+    ...mapState([
+      "basket",
+      "isBasketEmpty",
+      "isSidebarOpen",
+      "userLogged",
+      "welcomeUser"
+    ])
   },
   components: {
     Basket

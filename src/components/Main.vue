@@ -14,7 +14,7 @@
       </div>
       <Footer />
     </div>
-    <v-snackbar
+    <!-- <v-snackbar
       v-model="userLogged"
       class="snackbar"
       :timeout="1500"
@@ -29,7 +29,7 @@
       right
       top
       color="#51a2d8"
-    >Basket updated</v-snackbar>
+    >Basket updated</v-snackbar>-->
 
     <FormsContainer v-if="isBlurSet" />
   </div>
@@ -65,9 +65,19 @@ export default {
     blur() {
       this.setBlur();
     }
+    // getUserData() {
+    //   firebase.firestore
+    //     .collection("users")
+    //     .doc(this.uid)
+    //     .get()
+    //     .then(doc => {
+    //       this.$store.state.welcomeUser = doc.data().firstName;
+    //     });
+    // }
   },
   mounted() {
     this.blur();
+    // this.getUserData();
   }
 };
 </script>

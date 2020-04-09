@@ -103,6 +103,9 @@ export default {
     ...mapMutations(["COLLECT_DATA_REG"]),
     submit() {
       if (!this.$v.form.$error) {
+        //Setting welcome Msg
+        localStorage.setItem("welcomeUser", this.form.firstName);
+        this.$store.state.welcomeUser = localStorage.welcomeUser;
         firebase.authtentication
           .createUserWithEmailAndPassword(this.form.email, this.form.password)
           .then(user => {
@@ -110,6 +113,7 @@ export default {
 
             localStorage.setItem("uid", user.user.uid);
             this.$store.state.uid = localStorage.uid;
+
             firebase.firestore
               .collection("users")
               .doc(this.$store.state.uid)

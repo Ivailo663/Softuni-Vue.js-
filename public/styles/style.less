@@ -19,9 +19,6 @@ p,
 li {
   color: @color1;
 }
-.active {
-  color: @color1;
-}
 //general classes
 
 .blur {
@@ -283,6 +280,13 @@ hr {
 a {
   text-decoration: none !important;
 }
+.active {
+  color: @color1;
+  border-bottom: 2px solid @color1;
+}
+.activeColor {
+  color: @color1 !important;
+}
 //general classes end
 
 //  HOME SECTION START
@@ -371,6 +375,14 @@ a {
     background-image: url("../../src/assets/banner.jpg");
     background-position: 14% 25%;
     background-size: cover;
+    .hello-message {
+      color: @color3;
+      font-weight: 600;
+      font-size: 1.6rem;
+      position: absolute;
+      top: 2.1rem;
+      right: 3.4rem;
+    }
     .landing-msg {
       position: absolute;
       left: 50%;
@@ -388,11 +400,6 @@ a {
         h1 {
           font-size: 12vw;
         }
-      }
-      p {
-        color: @color3;
-        font-weight: 600;
-        font-size: 1.6rem;
       }
     }
     .user-controller {
@@ -467,16 +474,20 @@ a {
       text-transform: uppercase;
       margin: 0;
       li {
-        margin: 1rem;
+        margin: 0 1rem;
         color: @color3;
         font-size: 1.2rem;
         font-weight: 500;
-        &:hover {
-          transform: scale(1.1);
-          transition: 0.2s ease-in-out;
-        }
-        a {
+
+        p {
           color: @color3;
+          margin-top: 1rem;
+          border-bottom: 2px solid @color4;
+          transition: 0.3s ease-in-out;
+          &:hover {
+            color: @color1;
+            // border-bottom: 2px solid @color1;
+          }
         }
       }
     }
@@ -496,6 +507,17 @@ a {
       height: 51vh;
     }
   }
+  figure {
+    position: relative;
+    .price {
+      position: absolute;
+      top: 8px;
+      right: 15px;
+      background-color: @color4;
+      color: @color6;
+      padding: 0.5rem;
+    }
+  }
 }
 .info-wrapper {
   width: 100%;
@@ -510,7 +532,8 @@ a {
     padding: 0.5rem;
   }
   .model-wrapper {
-    min-height: 6rem;
+    min-height: 4rem;
+    max-height: 4rem;
   }
 }
 .sneakers-buttons-wrapper {
@@ -674,8 +697,8 @@ a {
       margin: 0 1rem;
       span {
         position: absolute;
-        right: 13px;
-        top: 42px;
+        right: 15px;
+        top: 33px;
       }
     }
     label {
@@ -685,7 +708,7 @@ a {
     }
     input {
       padding: 1em;
-      height: 3rem;
+      height: 2rem;
       width: 100%;
       background: transparent;
       border: 0.05rem solid @color1;

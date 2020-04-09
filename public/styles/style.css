@@ -16,9 +16,6 @@ p,
 li {
   color: #423b3a;
 }
-.active {
-  color: #423b3a;
-}
 .blur {
   filter: blur(6px);
 }
@@ -259,6 +256,13 @@ hr {
 a {
   text-decoration: none !important;
 }
+.active {
+  color: #423b3a;
+  border-bottom: 2px solid #423b3a;
+}
+.activeColor {
+  color: #423b3a !important;
+}
 .form {
   width: 100%;
   height: 100%;
@@ -337,6 +341,14 @@ a {
   background-position: 14% 25%;
   background-size: cover;
 }
+.navigation .banner .hello-message {
+  color: #fcfcfc;
+  font-weight: 600;
+  font-size: 1.6rem;
+  position: absolute;
+  top: 2.1rem;
+  right: 3.4rem;
+}
 .navigation .banner .landing-msg {
   position: absolute;
   left: 50%;
@@ -355,11 +367,6 @@ a {
   .navigation .banner .landing-msg h1 {
     font-size: 12vw;
   }
-}
-.navigation .banner .landing-msg p {
-  color: #fcfcfc;
-  font-weight: 600;
-  font-size: 1.6rem;
 }
 .navigation .banner .user-controller {
   position: absolute;
@@ -433,17 +440,19 @@ a {
   margin: 0;
 }
 .navigation nav ul li {
-  margin: 1rem;
+  margin: 0 1rem;
   color: #fcfcfc;
   font-size: 1.2rem;
   font-weight: 500;
 }
-.navigation nav ul li:hover {
-  transform: scale(1.1);
-  transition: 0.2s ease-in-out;
-}
-.navigation nav ul li a {
+.navigation nav ul li p {
   color: #fcfcfc;
+  margin-top: 1rem;
+  border-bottom: 2px solid #67e0d2;
+  transition: 0.3s ease-in-out;
+}
+.navigation nav ul li p:hover {
+  color: #423b3a;
 }
 .sneakers {
   margin: 10rem 0;
@@ -460,6 +469,17 @@ a {
   width: 100%;
   height: 51vh;
 }
+.sneakers-inner figure {
+  position: relative;
+}
+.sneakers-inner figure .price {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  background-color: #67e0d2;
+  color: #fff;
+  padding: 0.5rem;
+}
 .info-wrapper {
   width: 100%;
 }
@@ -473,7 +493,8 @@ a {
   padding: 0.5rem;
 }
 .info-wrapper .model-wrapper {
-  min-height: 6rem;
+  min-height: 4rem;
+  max-height: 4rem;
 }
 .sneakers-buttons-wrapper {
   margin: 2rem 0;
@@ -622,8 +643,8 @@ a {
 }
 .dashboard .inner .input-holder span {
   position: absolute;
-  right: 13px;
-  top: 42px;
+  right: 15px;
+  top: 33px;
 }
 .dashboard .inner label {
   color: #423b3a;
@@ -632,7 +653,7 @@ a {
 }
 .dashboard .inner input {
   padding: 1em;
-  height: 3rem;
+  height: 2rem;
   width: 100%;
   background: transparent;
   border: 0.05rem solid #423b3a;

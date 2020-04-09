@@ -7,14 +7,14 @@
         class="col-lg-4 col-md-6 d-flex-justify-content-start"
       >
         <div class="sneakers-inner d-flex flex-column align-items-center">
-          <div class="sneakers-image-holder">
+          <figure class="sneakers-image-holder">
             <img :src="item.src" :alt="item.brand" />
-          </div>
+            <p class="price">{{item.price}} $</p>
+          </figure>
           <div class="info-wrapper">
             <h3>{{item.brand}}</h3>
             <div class="model-wrapper">
               <p>{{item.model}}</p>
-              <p class="price">{{item.price}} $</p>
             </div>
 
             <div class="sneakers-buttons-wrapper d-flex justify-content-center">

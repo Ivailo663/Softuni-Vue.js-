@@ -55,7 +55,8 @@ export default {
             .doc(user.user.uid)
             .get()
             .then(doc => {
-              this.COLLECT_DATA_LOG(doc.data());
+              localStorage.setItem("welcomeUser", doc.data().firstName);
+              this.$store.state.welcomeUser = doc.data().firstName;
             });
         })
 

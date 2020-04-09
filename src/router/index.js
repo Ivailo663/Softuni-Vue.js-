@@ -58,7 +58,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!store.state.userLogged) {
       console.log(store.state.login, ".. you shall not pass");
-
+      next("/");
       return;
     }
     next("/home/menSection");

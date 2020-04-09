@@ -90,7 +90,6 @@ export default {
     Basket
   },
   methods: {
-    ...mapActions(["closeBasket"]),
     closingBasket() {
       this.closeBasket();
     },

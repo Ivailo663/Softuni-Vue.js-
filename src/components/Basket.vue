@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="basket.length>0">
     <perfect-scrollbar>
       <div class="basket-inner">
         <div v-for="(item,index) in basket" :key="index">
@@ -28,7 +28,7 @@
 
       <p class="total">
         Total:
-        <span class="price">123$</span>
+        <span class="price">{{totalPrice}} $</span>
       </p>
     </div>
   </div>
@@ -46,7 +46,15 @@ export default {
 
   name: "Basket",
   computed: {
-    ...mapState(["basket", "userLogged"])
+    ...mapState(["basket", "userLogged", "isBasketEmpty"]),
+    totalPrice() {
+      let arr = [];
+      let sum;
+      this.basket.forEach(element => {
+        arr.push(parseInt(element.price, 10));
+      });
+      return (sum = arr.reduce((total, amount) => total + amount));
+    }
   },
   methods: {
     protectRoute() {

@@ -13,7 +13,7 @@
           <div class="info-wrapper">
             <h3>{{item.brand}}</h3>
             <div class="model-wrapper">
-              <h5>{{item.model}}</h5>
+              <p>{{item.model}}</p>
             </div>
 
             <div class="sneakers-buttons-wrapper">
@@ -25,8 +25,8 @@
       </div>
     </div>
     <div :class="{layer:isSidebarOpen}"></div>
-    <Sidebar :item="this.itemProp" />
-    <Loading :active.sync="isLoading"></Loading>
+    <Sidebar :item="itemProp" @clearItem="clearingItem" v-if="isSidebarOpen" />
+    <!-- <Loading :active.sync="isLoading"></Loading> -->
   </div>
 </template>
 
@@ -43,7 +43,7 @@ export default {
       testImg: "",
       sneakersCollection: [],
       isLoading: true,
-      itemProp: null
+      itemProp: ""
     };
   },
   computed: {
@@ -65,6 +65,10 @@ export default {
         this.sneakersCollection.push(doc.data());
         // console.log(this.menCategory);
       });
+    },
+    clearingItem() {
+      this.itemProp = null;
+      console.log("Check", this.itemProp);
     }
   },
   mounted() {

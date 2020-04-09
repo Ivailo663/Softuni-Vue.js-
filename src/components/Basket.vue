@@ -12,7 +12,7 @@
 
           <div class="info-wrapper">
             <h3>{{item.brand}}</h3>
-            <p>{{item.sizes}}</p>
+            <p>size {{item.sizes}}</p>
             <p class="price">{{item.price}} $</p>
           </div>
         </div>
@@ -21,7 +21,7 @@
 
       <div class="d-flex justify-content-between">
         <router-link to="/checkout">
-          <button class="btn btn-dark basic-btn">Checkout</button>
+          <button class="btn btn-dark basic-btn" @click="protectRoute">Checkout</button>
         </router-link>
 
         <p class="total price">Total: 123$</p>
@@ -32,16 +32,22 @@
 
 <script>
 import { mapState } from "vuex";
-import { PerfectScrollbar } from "vue2-perfect-scrollbar";
+
 export default {
   data() {
     return {
       hideBtn: false
     };
   },
+
   name: "Basket",
   computed: {
-    ...mapState(["basket"])
+    ...mapState(["basket", "userLogged"])
+  },
+  methods: {
+    protectRoute() {
+      !this.userLogged ? (this.$store.state.isBlurSet = true) : null;
+    }
   }
 };
 </script>

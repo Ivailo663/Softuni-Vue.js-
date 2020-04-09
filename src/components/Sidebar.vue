@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar" :class="{offsetRight:isSidebarOpen}">
+  <div class="sidebar" :class="{offsetRight:isSidebarOpen}" v-on-clickaway="closeModal">
     <span class="discard-item" @click="closeModal">
       <i class="fa fa-times-circle"></i>
     </span>
@@ -19,6 +19,7 @@
         </div>
         <div class="sneakers-buttons-wrapper">
           <p v-if="isSizePicked" class="sizePicked">Please pick a size.</p>
+          <p v-else>Sizes</p>
           <div class="d-flex sizes">
             <div v-for="(size,index) in item.sizes" :key="index" class="radio-input">
               <input :id="index" type="radio" name="size" :value="index" />
@@ -34,12 +35,22 @@
 </template>
 
 <script>
+import { mixin as clickaway } from "vue-clickaway";
 import { mapState } from "vuex";
 export default {
+  mixins: [clickaway],
   name: "Sidebar",
   props: ["item"],
   data() {
     return {
+      colors: [
+        "indigo",
+        "warning",
+        "pink darken-2",
+        "red lighten-1",
+        "deep-purple accent-4"
+      ],
+      slides: ["First", "Second", "Third", "Fourth", "Fifth"],
       basket: this.$store.state.basket,
       isSizePicked: false,
       pickedSize: {
@@ -48,6 +59,7 @@ export default {
       resultOfBothObj: null
     };
   },
+
   computed: {
     ...mapState(["isMediaShown", "isSidebarOpen", "isBasketEmpty"])
   },
@@ -55,11 +67,13 @@ export default {
     closeModal() {
       this.$store.state.isSidebarOpen = false;
       this.pickedSize = null;
+      // this.$emit("clearItem");
     },
     addToBasket(item) {
       if (!this.pickedSize.sizes) {
-        return (this.isSizePicked = true); //Warning to pick size
+        this.isSizePicked = true;
       } else {
+        this.isSizePicked = false;
         this.resultOfBothObj = { ...item, ...this.pickedSize };
         this.basket.push(this.resultOfBothObj);
         this.$store.state.isSidebarOpen = false;
@@ -67,15 +81,8 @@ export default {
       }
     },
     openBasket() {
-      if (this.basket.length > 0) {
+      if (this.basket) {
         this.$store.state.isBasketEmpty = false;
-        console.log(this.basket.length);
-        // for(let i=0; i<=this.basket.length;i++){
-        //   if(this.basket.length[i+])
-        // }
-
-        //The basket is no longer empty,
-        //it can be open
       }
     },
     pickSize(size) {

@@ -107,21 +107,16 @@ export default {
           .createUserWithEmailAndPassword(this.form.email, this.form.password)
           .then(user => {
             this.$store.state.isBlurSet = false;
-            this.$v.$error.$touch;
-            user.user
-              .updateProfile({
-                displayName: this.form.firstName
-              })
-              .then(() => {
-                this.COLLECT_DATA_REG(user.user);
-                firebase.firestore
-                  .collection("users")
-                  .doc(this.collectData.uid)
-                  .set({
-                    name: this.collectData.user,
-                    email: this.collectData.email
-                  });
-                console.log("Should be there?");
+
+            localStorage.setItem("uid", user.user.uid);
+            this.$store.state.uid = localStorage.uid;
+            firebase.firestore
+              .collection("users")
+              .doc(this.$store.state.uid)
+              .set({
+                firstName: this.form.firstName,
+                lastName: this.form.lastName,
+                email: this.form.email
               });
           })
           .catch(error => {
@@ -138,9 +133,4 @@ export default {
 };
 </script>
 <style scoped>
-.err {
-  color: #f66c6c;
-  font-size: 0.6rem;
-  margin: 0;
-}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="footer d-flex justify-content-center" id="break-point">
-    <div class="footer-inner-container">
+    <div class="footer-inner-container d-flex flex-column align-items-center">
       <div class="footer-nav-wrapper">
         <ul class="d-flex justify-content-center">
           <router-link to>
@@ -26,27 +26,27 @@
         <ul class="d-flex justify-content-center">
           <li>
             <a>
-              <div class="media facebook"></div>
+              <i class="fab media fa-facebook-f"></i>
             </a>
           </li>
           <li>
             <a>
-              <div class="media pinterest"></div>
+              <i class="fab media fa-pinterest-p"></i>
             </a>
           </li>
           <li>
             <a>
-              <div class="media snapchat"></div>
+              <i class="fab media fa-snapchat-ghost"></i>
             </a>
           </li>
           <li>
             <a>
-              <div class="media instagram"></div>
+              <i class="fab media fa-instagram"></i>
             </a>
           </li>
           <li>
             <a>
-              <div class="media twitter"></div>
+              <i class="fab media fa-twitter"></i>
             </a>
           </li>
         </ul>

@@ -4,13 +4,13 @@
       <form class="d-flex flex-column" @submit.prevent="submit">
         <h3>Sign in</h3>
         <label for="email">E-mail</label>
-        <input type="email" id="email" v-model="$v.form.email.$model" />
+        <input type="email" id="email" v-model.lazy="$v.form.email.$model" />
         <div v-if="$v.form.$error">
           <p class="err" v-if="!$v.form.email.required">E-male not correct</p>
         </div>
 
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="$v.form.password.$model" />
+        <input type="password" id="password" v-model.lazy="$v.form.password.$model" />
         <div v-if="$v.form.$error">
           <p class="err" v-if="!$v.form.password.required">E-male not correct</p>
         </div>

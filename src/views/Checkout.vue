@@ -195,15 +195,10 @@ export default {
     submitOrder() {
       this.$v.$touch();
       if (!this.$v.form.$error) {
-        if (!this.$v.form.$error) {
-          console.log("ERROR");
-          return;
-        } else {
-          setTimeout(() => {
-            this.orderSubmitted = true;
-            this.$store.state.basket = [];
-          }, 2000);
-        }
+        setTimeout(() => {
+          this.orderSubmitted = true;
+          this.$store.state.basket = [];
+        }, 2000);
       } else {
         console.log("ERROR");
       }

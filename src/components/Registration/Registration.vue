@@ -3,23 +3,24 @@
     <h3>Sign up</h3>
     <form class="d-flex flex-column" @submit.prevent="submit">
       <label for="email">E-mail</label>
-      <input :class="{}" type="text" id="email" v-model.lazy="$v.form.email.$model" />
+      <input :class="{}" type="text" id="email" v-model="$v.form.email.$model" />
       <div v-if="$v.form.$error">
         <p class="err" v-if="!$v.form.email.email">E-male not correct</p>
+        <p class="err" v-if="!$v.form.email.required">E-male not correct</p>
       </div>
       <label for="firstName">First Name</label>
-      <input type="text" id="fistName" v-model.lazy="$v.form.firstName.$model" />
+      <input type="text" id="fistName" v-model="$v.form.firstName.$model" />
       <div v-if="$v.form.$error">
-        <p class="err" v-if="!$v.form.firstName.firstName">Name not correct</p>
+        <p class="err" v-if="!$v.form.firstName.firstName">Name should start with a cappital letter</p>
       </div>
 
       <label for="lastName">Last Name</label>
-      <input type="text" id="lastName" v-model.lazy="form.lastName" @blur="$v.form.lastName.$touch" />
+      <input type="text" id="lastName" v-model="$v.form.lastName.$model" />
       <div v-if="$v.form.$error">
-        <p class="err" v-if="!$v.form.lastName.lastName">Name not correct</p>
+        <p class="err" v-if="!$v.form.lastName.lastName">Name should start with a cappital letter</p>
       </div>
       <label for="password">Password</label>
-      <input type="password" id="password" v-model.lazy="$v.form.password.$model" />
+      <input type="password" id="password" v-model="$v.form.password.$model" />
       <div v-if="$v.form.$error">
         <p
           class="err"
@@ -102,8 +103,8 @@ export default {
   methods: {
     ...mapMutations(["COLLECT_DATA_REG"]),
     submit() {
+      this.$v.$touch();
       if (!this.$v.form.$error) {
-        //Setting welcome Msg
         localStorage.setItem("welcomeUser", this.form.firstName);
         this.$store.state.welcomeUser = localStorage.welcomeUser;
         firebase.authtentication

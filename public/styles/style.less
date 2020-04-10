@@ -121,26 +121,29 @@ i {
   height: 40vh !important;
   .v-window {
     height: 40vh !important;
+    .v-carousel__item {
+      height: 100% !important;
+    }
   }
   .v-sheet {
     position: relative;
     img {
       position: absolute;
       bottom: 0;
+      width: 100%;
     }
-  }
-  .v-responsive {
-    height: 57vh;
   }
 }
 .sidebar {
   width: 30em;
   height: 100%;
+  z-index: 2;
   background-color: @color3;
   top: 0;
   right: -30rem;
   position: fixed;
   transition: 0.4s;
+
   .discard-item {
     position: relative;
     top: 1rem;
@@ -157,11 +160,22 @@ i {
     .btn {
       width: 25rem;
     }
+    @media (max-width: 576px) {
+      .btn {
+        width: 19.5rem;
+      }
+    }
   }
   .sizes {
     margin: 0 0 3rem 0;
   }
 }
+@media (max-width: 576px) {
+  .sidebar {
+    width: 100%;
+  }
+}
+
 // !Sidebar
 
 // *? basket
@@ -221,6 +235,7 @@ i {
 }
 
 #break-point {
+  margin-top: 10rem;
   position: relative;
   bottom: 0;
   left: 0;
@@ -484,6 +499,7 @@ a {
   nav {
     background: @color4;
     padding: 0;
+    margin-bottom: 10rem;
     ul {
       list-style: none;
       text-transform: uppercase;
@@ -508,7 +524,7 @@ a {
   }
 }
 .sneakers {
-  margin: 10rem 0;
+  // margin: 10rem 0;
 }
 .sneakers-inner {
   margin: 1rem 0;
@@ -518,7 +534,12 @@ a {
     width: 100%;
     img {
       width: 100%;
-      height: 51vh;
+      height: 22rem;
+    }
+    @media (max-width: 992px) {
+      img {
+        height: 17rem;
+      }
     }
   }
   figure {
@@ -537,21 +558,16 @@ a {
   width: 100%;
   h3 {
     margin-top: 0.8rem;
-    padding: 0.5rem;
   }
 
   p {
     margin: 0;
-    font-size: 1.4rem;
-    padding: 0.5rem;
+    font-size: 1rem;
   }
   .model-wrapper {
     min-height: 4rem;
     max-height: 4rem;
   }
-}
-.sneakers-buttons-wrapper {
-  margin: 2rem 0;
 }
 //MAIN SECTION END
 

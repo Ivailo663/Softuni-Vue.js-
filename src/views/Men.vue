@@ -1,6 +1,6 @@
 <template>
-  <div class="sneakers container">
-    <div class="row">
+  <div class="sneakers container d-flex justify-content-center">
+    <div class="row col-lg-10">
       <div
         v-for="(item) in sneakersCollection"
         :key="item.model_id"

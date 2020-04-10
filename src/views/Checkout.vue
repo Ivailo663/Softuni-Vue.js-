@@ -12,47 +12,28 @@
           <div class="order-info">
             <form class="d-flex flex-column" @submit.prevent="submitOrder">
               <label for="firstNameOrder">First Name</label>
-              <input
-                type="text"
-                id="firstNameOrder"
-                v-model.lazy="$v.form.firstName.$model"
-                @blur="$v.form.firstName.$touch"
-              />
+              <input type="text" id="firstNameOrder" v-model="$v.form.firstName.$model" />
               <div v-if="$v.form.$error">
                 <p class="err" v-if="!$v.form.firstName.firstName">Name not correct</p>
               </div>
 
               <label for="lastNameOrder">Last Name</label>
-              <input
-                type="text"
-                id="lastNameOrder"
-                v-model.lazy="$v.form.lastName.$model"
-                @blur="$v.form.lastName.$touch"
-              />
+              <input type="text" id="lastNameOrder" v-model="$v.form.lastName.$model" />
               <div v-if="$v.form.$error">
                 <p class="err" v-if="!$v.form.lastName.lastName">Name not correct</p>
               </div>
 
               <label for="phoneOrder">Phone number</label>
-              <input
-                type="text"
-                id="phoneOrder"
-                v-model.lazy="$v.form.phone.$model"
-                @blur="$v.form.phone.$touch"
-              />
+              <input type="text" id="phoneOrder" v-model="$v.form.phone.$model" />
               <div v-if="$v.form.$error">
                 <p class="err" v-if="!$v.form.phone.phone">Name not correct</p>
               </div>
 
               <label for="e-mail">E-mail</label>
-              <input
-                type="text"
-                id="e-mail"
-                v-model.lazy="$v.form.email.$model"
-                @blur="$v.form.email.$touch"
-              />
+              <input type="text" id="e-mail" v-model="$v.form.email.$model" />
               <div v-if="$v.form.$error">
                 <p class="err" v-if="!$v.form.email.email">E-male not correct</p>
+                <p class="err" v-if="!$v.form.email.required">E-male not correct</p>
               </div>
 
               <label for="addresOrder">Addres</label>
@@ -179,7 +160,8 @@ export default {
         required
       },
       email: {
-        email
+        email,
+        required
       },
       phone: {
         phone(value) {
@@ -209,11 +191,22 @@ export default {
           this.form = doc.data();
         });
     },
-    async submitOrder() {
-      await setTimeout(() => {
-        this.orderSubmitted = true;
-        this.$store.state.basket = [];
-      }, 2000);
+
+    submitOrder() {
+      this.$v.$touch();
+      if (!this.$v.form.$error) {
+        if (!this.$v.form.$error) {
+          console.log("ERROR");
+          return;
+        } else {
+          setTimeout(() => {
+            this.orderSubmitted = true;
+            this.$store.state.basket = [];
+          }, 2000);
+        }
+      } else {
+        console.log("ERROR");
+      }
     },
     discardItem(index) {
       this.basket.splice(index, 1);

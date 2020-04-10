@@ -116,26 +116,26 @@ export default {
       this.$v.$touch();
       this.loader = true;
       if (!this.$v.form.$error) {
-        this.setWelcomeMsg(),
-          firebase.authtentication
-            .createUserWithEmailAndPassword(this.form.email, this.form.password)
-            .then(user => {
-              this.loader = false;
-              this.SETTING_UID(user);
-              firebase.firestore
-                .collection("users")
-                .doc(user.user.uid)
-                .set({
-                  firstName: this.form.firstName,
-                  lastName: this.form.lastName,
-                  email: this.form.email,
-                  address: "",
-                  phone: ""
-                });
-            })
-            .catch(error => {
-              this.asdf = error.message;
-            });
+        firebase.authtentication
+          .createUserWithEmailAndPassword(this.form.email, this.form.password)
+          .then(user => {
+            this.loader = false;
+            this.SETTING_UID(user);
+            firebase.firestore
+              .collection("users")
+              .doc(user.user.uid)
+              .set({
+                firstName: this.form.firstName,
+                lastName: this.form.lastName,
+                email: this.form.email,
+                address: "",
+                phone: ""
+              });
+            this.setWelcomeMsg();
+          })
+          .catch(error => {
+            this.asdf = error.message;
+          });
       } else {
         this.loader = false;
         console.log("ERROR");

@@ -2,7 +2,7 @@
   <div>
     <div class="input-fields-wrapper">
       <form class="d-flex flex-column" @submit.prevent="submit">
-        <h3 @click="check">Sign in</h3>
+        <h3>Sign in</h3>
         <label for="email">E-mail</label>
         <input type="email" id="email" v-model="$v.form.email.$model" />
         <div v-if="$v.form.$error">
@@ -77,8 +77,7 @@ export default {
               .doc(user.user.uid)
               .get()
               .then(doc => {
-                localStorage.setItem("welcomeUser", doc.data().firstName);
-                this.$store.state.welcomeUser = doc.data().firstName;
+                this.setWelcomeMsg(doc.data());
               });
           })
           .catch(function(error) {});
@@ -90,7 +89,10 @@ export default {
     toRegister() {
       this.$emit("toRegister", this.reg);
     },
-    check() {}
+    setWelcomeMsg(name) {
+      localStorage.setItem("welcomeUser", name.firstName);
+      this.$store.state.welcomeUser = name.firstName;
+    }
   }
 };
 </script>

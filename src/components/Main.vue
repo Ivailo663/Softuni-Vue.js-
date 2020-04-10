@@ -1,5 +1,5 @@
 <template>
-  <div class="main" :class="{marginRight:isSidebarOpen}">
+  <div class="main">
     <div :class="{blur:isBlurSet}">
       <Navbar />
       <vue-page-transition name="fade">
@@ -14,22 +14,6 @@
       </div>
       <Footer />
     </div>
-    <!-- <v-snackbar
-      v-model="userLogged"
-      class="snackbar"
-      :timeout="1500"
-      center
-      top
-      color="#85c688"
-    >You're in!</v-snackbar>
-    <v-snackbar
-      v-model="itemAddedPop"
-      class="snackbar"
-      :timeout="1500"
-      right
-      top
-      color="#51a2d8"
-    >Basket updated</v-snackbar>-->
 
     <FormsContainer v-if="isBlurSet" />
   </div>

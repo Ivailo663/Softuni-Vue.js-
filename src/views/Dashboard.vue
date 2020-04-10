@@ -7,7 +7,7 @@
           Back to store
         </router-link>
       </div>
-      <form class="d-flex flex-column align-items-center" @submit="submitChanges">
+      <form class="d-flex flex-column align-items-center" @submit.prevent="submitChanges">
         <h3>Info:</h3>
 
         <div class="d-flex flex-column user-info">
@@ -18,7 +18,7 @@
                 type="text"
                 id="firstNameEdit"
                 v-model.lazy="$v.form.firstName.$model"
-                @blur="$v.form.lastName.$touch"
+                @blur="$v.form.firstName.$touch"
               />
               <div v-if="$v.form.$error">
                 <p class="err" v-if="!$v.form.firstName.firstName">Name not correct</p>
@@ -31,7 +31,12 @@
             </div>
             <div class="input-holder">
               <label for="lastNameEdit">Last name</label>
-              <input type="text" id="lastNameEdit" v-model.lazy="$v.form.lastName.$model" />
+              <input
+                type="text"
+                id="lastNameEdit"
+                v-model.lazy="$v.form.lastName.$model"
+                @blur="$v.form.lastName.$touch"
+              />
               <div v-if="$v.form.$error">
                 <p class="err" v-if="!$v.form.lastName.lastName">Name not correct</p>
               </div>
@@ -44,7 +49,12 @@
           </div>
           <div class="input-holder">
             <label for="phoneEdit">Phone</label>
-            <input type="text" id="phoneEdit" v-model.lazy="$v.form.phone.$model" />
+            <input
+              type="text"
+              id="phoneEdit"
+              v-model.lazy="$v.form.phone.$model"
+              @blur="$v.form.phone.$touch"
+            />
             <div v-if="$v.form.$error">
               <p class="err" v-if="!$v.form.phone.phone">Name not correct</p>
             </div>
@@ -57,7 +67,12 @@
 
           <div class="input-holder">
             <label for="emailEdit">Email</label>
-            <input type="text" id="emailEdit" v-model.lazy="$v.form.email.$model" />
+            <input
+              type="text"
+              id="emailEdit"
+              v-model.lazy="$v.form.email.$model"
+              @blur="$v.form.email.$touch"
+            />
             <div v-if="$v.form.$error">
               <p class="err" v-if="!$v.form.email.email">E-male not correct</p>
             </div>
@@ -172,7 +187,8 @@ export default {
         required
       },
       email: {
-        email
+        email,
+        required
       },
       phone: {
         phone(value) {
@@ -192,11 +208,16 @@ export default {
         });
     },
     submitChanges() {
-      firebase.firestore
-        .collection("users")
-        .doc(this.uid)
-        .update(this.form)
-        .then(() => {});
+      if (this.$v.form.$error) {
+        console.log("ERROR");
+        return;
+      } else {
+        firebase.firestore
+          .collection("users")
+          .doc(this.uid)
+          .update(this.form)
+          .then(() => {});
+      }
     }
   },
   mounted() {

@@ -179,6 +179,12 @@ i {
   padding: 1rem;
 }
 
+@media (max-width: 768px) {
+  .basket {
+    width: 22rem;
+    right: 0.5rem;
+  }
+}
 .basket-inner {
   height: 19rem;
   .row {
@@ -213,6 +219,7 @@ i {
     margin: 3rem 0;
   }
 }
+
 #break-point {
   position: relative;
   bottom: 0;
@@ -383,6 +390,13 @@ a {
       top: 2.1rem;
       right: 3.4rem;
     }
+    @media (max-width: 768px) {
+      .hello-message {
+        top: 0.1rem;
+        right: 0.4rem;
+        font-size: 1.2rem;
+      }
+    }
     .landing-msg {
       position: absolute;
       left: 50%;
@@ -405,9 +419,10 @@ a {
     .user-controller {
       position: absolute;
       bottom: 0;
-      right: 2rem;
+      right: 1.2rem;
       ul {
         list-style: none;
+        margin: 0;
         li {
           color: @color3;
           font-size: 2rem;
@@ -424,8 +439,8 @@ a {
             z-index: 20;
             background-color: #fff;
             position: absolute;
-            bottom: -6rem;
-            left: -2rem;
+            bottom: -6.5rem;
+            left: -3rem;
             border-radius: 9px;
             hr {
               margin-top: 0.5rem;
@@ -482,7 +497,6 @@ a {
         p {
           color: @color3;
           margin-top: 1rem;
-          border-bottom: 2px solid @color4;
           transition: 0.3s ease-in-out;
           &:hover {
             color: @color1;
@@ -682,6 +696,9 @@ a {
       }
       .card-details {
         width: 33vw;
+        input {
+          cursor: not-allowed;
+        }
       }
       @media (max-width: 768px) {
         .user-info {

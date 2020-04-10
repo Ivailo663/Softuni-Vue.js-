@@ -160,6 +160,12 @@ i {
   box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.21);
   padding: 1rem;
 }
+@media (max-width: 768px) {
+  .basket {
+    width: 22rem;
+    right: 0.5rem;
+  }
+}
 .basket-inner {
   height: 19rem;
 }
@@ -349,6 +355,13 @@ a {
   top: 2.1rem;
   right: 3.4rem;
 }
+@media (max-width: 768px) {
+  .navigation .banner .hello-message {
+    top: 0.1rem;
+    right: 0.4rem;
+    font-size: 1.2rem;
+  }
+}
 .navigation .banner .landing-msg {
   position: absolute;
   left: 50%;
@@ -371,10 +384,11 @@ a {
 .navigation .banner .user-controller {
   position: absolute;
   bottom: 0;
-  right: 2rem;
+  right: 1.2rem;
 }
 .navigation .banner .user-controller ul {
   list-style: none;
+  margin: 0;
 }
 .navigation .banner .user-controller ul li {
   color: #fcfcfc;
@@ -392,8 +406,8 @@ a {
   z-index: 20;
   background-color: #fff;
   position: absolute;
-  bottom: -6rem;
-  left: -2rem;
+  bottom: -6.5rem;
+  left: -3rem;
   border-radius: 9px;
 }
 .navigation .banner .user-controller ul li .dropdownMenu hr {
@@ -448,7 +462,6 @@ a {
 .navigation nav ul li p {
   color: #fcfcfc;
   margin-top: 1rem;
-  border-bottom: 2px solid #67e0d2;
   transition: 0.3s ease-in-out;
 }
 .navigation nav ul li p:hover {
@@ -628,6 +641,9 @@ a {
 }
 .dashboard .inner form .card-details {
   width: 33vw;
+}
+.dashboard .inner form .card-details input {
+  cursor: not-allowed;
 }
 @media (max-width: 768px) {
   .dashboard .inner form .user-info {

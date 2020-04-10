@@ -12,19 +12,51 @@
           <div class="order-info">
             <form class="d-flex flex-column" @submit.prevent="submitOrder">
               <label for="firstNameOrder">First Name</label>
-              <input type="text" id="firstNameOrder" v-model="info.firstName" />
+              <input
+                type="text"
+                id="firstNameOrder"
+                v-model.lazy="$v.form.firstName.$model"
+                @blur="$v.form.firstName.$touch"
+              />
+              <div v-if="$v.form.$error">
+                <p class="err" v-if="!$v.form.firstName.firstName">Name not correct</p>
+              </div>
 
               <label for="lastNameOrder">Last Name</label>
-              <input type="text" id="lastNameOrder" v-model="info.lastName" />
+              <input
+                type="text"
+                id="lastNameOrder"
+                v-model.lazy="$v.form.lastName.$model"
+                @blur="$v.form.lastName.$touch"
+              />
+              <div v-if="$v.form.$error">
+                <p class="err" v-if="!$v.form.lastName.lastName">Name not correct</p>
+              </div>
 
               <label for="phoneOrder">Phone number</label>
-              <input type="text" id="phoneOrder" v-model="info.phone" />
+              <input
+                type="text"
+                id="phoneOrder"
+                v-model.lazy="$v.form.phone.$model"
+                @blur="$v.form.phone.$touch"
+              />
+              <div v-if="$v.form.$error">
+                <p class="err" v-if="!$v.form.phone.phone">Name not correct</p>
+              </div>
 
               <label for="e-mail">E-mail</label>
-              <input type="text" id="e-mail" v-model="info.email" />
+              <input
+                type="text"
+                id="e-mail"
+                v-model.lazy="$v.form.email.$model"
+                @blur="$v.form.email.$touch"
+              />
+              <div v-if="$v.form.$error">
+                <p class="err" v-if="!$v.form.email.email">E-male not correct</p>
+              </div>
 
               <label for="addresOrder">Addres</label>
-              <input type="text" id="addresOrder" v-model="info.address" />
+              <input type="text" id="addresOrder" v-model="form.address" />
 
               <div class="payment-method d-flex">
                 <div>
@@ -93,15 +125,18 @@
 </template>
 
 <script>
+import { validationMixin } from "vuelidate";
+import { required, email, helpers } from "vuelidate/lib/validators";
 import { PerfectScrollbar } from "vue2-perfect-scrollbar";
 import { mapState } from "vuex";
 import Success from "../components/Success";
 import firebase from "../firebaseInit";
 
 export default {
+  mixins: [validationMixin],
   data() {
     return {
-      info: {
+      form: {
         firstName: "",
         lastName: "",
         phone: "",
@@ -113,6 +148,45 @@ export default {
   },
   components: {
     Success
+  },
+  validations: {
+    form: {
+      firstName: {
+        firstName(value) {
+          const valueArray = value.trim().split("");
+          if (!value) {
+            return false;
+          }
+          if (valueArray[0].toUpperCase() == valueArray[0]) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      },
+      lastName: {
+        lastName(value) {
+          const valArr = value.trim().split("");
+          if (!value) {
+            return false;
+          }
+          if (valArr[0].toUpperCase() == valArr[0]) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+        required
+      },
+      email: {
+        email
+      },
+      phone: {
+        phone(value) {
+          return /0[0-9]{9}/.test(value);
+        }
+      }
+    }
   },
   computed: {
     ...mapState(["basket", "collectDataLogged", "uid"]),
@@ -132,7 +206,7 @@ export default {
         .doc(this.uid)
         .get()
         .then(doc => {
-          this.info = doc.data();
+          this.form = doc.data();
         });
     },
     async submitOrder() {

@@ -31,7 +31,8 @@
     "vuelidate": "^0.7.5",
     "vuetify": "^2.2.20",
     "vuetify-toast-snackbar": "^0.6.1",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "vuex-map-fields": "^1.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.2.0",

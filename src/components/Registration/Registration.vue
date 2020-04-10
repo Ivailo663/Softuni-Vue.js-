@@ -27,8 +27,13 @@
           v-if="!$v.form.password.password"
         >Should contain uppercase,lowercase and min 8 digits</p>
       </div>
-      <button type="submit" class="btn btn-dark">Submit</button>
-      <div class="switch-form" @click="toLogin()">
+      <button type="submit" class="btn btn-dark" v-if="!loader">Submit</button>
+      <div class="submit-holder d-flex justify-content-center" v-else>
+        <div class="spinner-border m-5" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div class="switch-form" @click="toLogin">
         <a type="button">I have an account</a>
       </div>
     </form>
@@ -51,7 +56,8 @@ export default {
         password: "",
         email: ""
       },
-      log: "Login"
+      log: "Login",
+      loader: false
     };
   },
   computed: {
@@ -101,33 +107,37 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["COLLECT_DATA_REG"]),
+    ...mapMutations(["COLLECT_DATA_REG", "SETTING_UID"]),
+    setWelcomeMsg() {
+      localStorage.setItem("welcomeUser", this.form.firstName);
+      this.$store.state.welcomeUser = localStorage.welcomeUser;
+    },
     submit() {
       this.$v.$touch();
+      this.loader = true;
       if (!this.$v.form.$error) {
-        localStorage.setItem("welcomeUser", this.form.firstName);
-        this.$store.state.welcomeUser = localStorage.welcomeUser;
-        firebase.authtentication
-          .createUserWithEmailAndPassword(this.form.email, this.form.password)
-          .then(user => {
-            this.$store.state.isBlurSet = false;
-            localStorage.setItem("uid", user.user.uid);
-            this.$store.state.uid = localStorage.uid;
-            firebase.firestore
-              .collection("users")
-              .doc(this.$store.state.uid)
-              .set({
-                firstName: this.form.firstName,
-                lastName: this.form.lastName,
-                email: this.form.email,
-                address: "",
-                phone: ""
-              });
-          })
-          .catch(error => {
-            this.asdf = error.message;
-          });
+        this.setWelcomeMsg(),
+          firebase.authtentication
+            .createUserWithEmailAndPassword(this.form.email, this.form.password)
+            .then(user => {
+              this.loader = false;
+              this.SETTING_UID(user);
+              firebase.firestore
+                .collection("users")
+                .doc(user.user.uid)
+                .set({
+                  firstName: this.form.firstName,
+                  lastName: this.form.lastName,
+                  email: this.form.email,
+                  address: "",
+                  phone: ""
+                });
+            })
+            .catch(error => {
+              this.asdf = error.message;
+            });
       } else {
+        this.loader = false;
         console.log("ERROR");
       }
     },

@@ -10,6 +10,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+//general classes
+
 h1,
 h2,
 h3,
@@ -19,8 +22,9 @@ p,
 li {
   color: @color1;
 }
-//general classes
-
+ul {
+  list-style: none;
+}
 .blur {
   filter: blur(6px);
 }
@@ -304,10 +308,18 @@ a {
 }
 .active {
   color: @color1;
-  border-bottom: 2px solid @color1;
+  border-bottom: 1px solid @color1;
 }
 .activeColor {
   color: @color1 !important;
+}
+
+.social-media-container {
+  margin-bottom: 2rem;
+  i {
+    color: @color4;
+    font-size: 1.2rem;
+  }
 }
 //general classes end
 
@@ -497,13 +509,16 @@ a {
     }
   }
   nav {
-    background: @color4;
+    -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.05);
     padding: 0;
     margin-bottom: 10rem;
     ul {
       list-style: none;
       text-transform: uppercase;
       margin: 0;
+      padding-bottom: 1rem;
       li {
         margin: 0 1rem;
         color: @color3;
@@ -511,8 +526,9 @@ a {
         font-weight: 500;
 
         p {
-          color: @color3;
+          color: @color1;
           margin-top: 1rem;
+          margin-bottom: 0;
           transition: 0.3s ease-in-out;
           &:hover {
             color: @color1;
@@ -594,12 +610,6 @@ a {
     width: 40vw;
     p {
       color: @color3;
-    }
-  }
-  .social-media-container {
-    margin-bottom: 2rem;
-    i {
-      color: @color4;
     }
   }
 }

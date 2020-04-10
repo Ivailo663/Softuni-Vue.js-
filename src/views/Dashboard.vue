@@ -110,7 +110,10 @@
           </div>
         </div>
         <div class="submit-holder d-flex justify-content-center">
-          <button class="btn btn-dark basic-btn" type="submit">Submit</button>
+          <button class="btn btn-dark basic-btn" type="submit" v-if="!loader">Submit</button>
+          <div class="spinner-border m-5" role="status" v-else>
+            <span class="sr-only">Loading...</span>
+          </div>
         </div>
       </form>
     </div>
@@ -132,7 +135,8 @@ export default {
         email: "",
         phone: "",
         address: ""
-      }
+      },
+      loader: false
     };
   },
   computed: {
@@ -190,15 +194,18 @@ export default {
     },
     submitChanges() {
       this.$v.$touch();
-
+      this.loader = true;
       if (!this.$v.form.$error) {
         firebase.firestore
           .collection("users")
           .doc(this.uid)
           .update(this.form)
-          .then(() => {});
+          .then(() => {
+            this.loader = false;
+          });
       } else {
         console.log("ERROR");
+        this.loader = false;
         return;
       }
     }

@@ -58,6 +58,7 @@
 <script>
 export default {
   name: "Footer",
+  components: {},
   methods: {
     onScroll() {
       // const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
@@ -65,8 +66,9 @@ export default {
         window.pageYOffset || document.documentElement.scrollTop;
 
       const breakPoint = document.getElementById("break-point");
+      const breakPointTop = document.getElementBy;
 
-      if (currentScrollPosition + 1000 > breakPoint.offsetTop) {
+      if (currentScrollPosition + 800 > breakPoint.offsetTop) {
         this.$store.state.isMediaShown = false;
       } else {
         this.$store.state.isMediaShown = true;
@@ -75,6 +77,7 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.onScroll);
+    console.log(this);
   }
 };
 </script>

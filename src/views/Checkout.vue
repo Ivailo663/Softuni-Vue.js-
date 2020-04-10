@@ -55,12 +55,12 @@
                   </label>
                 </div>
               </div>
-              <button class="btn btn-dark button-basic" type="submit">
-                Submit
-                <!-- <div class="spinner-border text-light" role="status">
+              <div class="submit-holder d-flex justify-content-center" v-if="loader">
+                <div class="spinner-border m-5" role="status">
                   <span class="sr-only">Loading...</span>
-                </div>-->
-              </button>
+                </div>
+              </div>
+              <button class="btn btn-dark button-basic" type="submit" v-if="!loader">Submit</button>
             </form>
           </div>
         </div>
@@ -124,7 +124,8 @@ export default {
         email: "",
         address: ""
       },
-      orderSubmitted: false
+      orderSubmitted: false,
+      loader: false
     };
   },
   components: {
@@ -193,13 +194,16 @@ export default {
     },
 
     submitOrder() {
+      this.loader = true;
       this.$v.$touch();
       if (!this.$v.form.$error) {
         setTimeout(() => {
           this.orderSubmitted = true;
+          this.loader = false;
           this.$store.state.basket = [];
         }, 2000);
       } else {
+        this.loader = false;
         console.log("ERROR");
       }
     },

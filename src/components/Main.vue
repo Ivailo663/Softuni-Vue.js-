@@ -6,11 +6,35 @@
         <router-view />
       </vue-page-transition>
       <div class="social-media-fixed d-flex flex-column" v-if="this.isMediaShown">
-        <div class="media facebook"></div>
-        <div class="media pinterest"></div>
-        <div class="media snapchat"></div>
-        <div class="media instagram"></div>
-        <div class="media twitter"></div>
+        <div class="social-media-container">
+          <ul class="d-flex justify-content-center flex-column">
+            <li>
+              <a>
+                <i class="fab media fa-facebook-f"></i>
+              </a>
+            </li>
+            <li>
+              <a>
+                <i class="fab media fa-pinterest-p"></i>
+              </a>
+            </li>
+            <li>
+              <a>
+                <i class="fab media fa-snapchat-ghost"></i>
+              </a>
+            </li>
+            <li>
+              <a>
+                <i class="fab media fa-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a>
+                <i class="fab media fa-twitter"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
       <Footer />
     </div>
@@ -49,19 +73,9 @@ export default {
     blur() {
       this.setBlur();
     }
-    // getUserData() {
-    //   firebase.firestore
-    //     .collection("users")
-    //     .doc(this.uid)
-    //     .get()
-    //     .then(doc => {
-    //       this.$store.state.welcomeUser = doc.data().firstName;
-    //     });
-    // }
   },
   mounted() {
     this.blur();
-    // this.getUserData();
   }
 };
 </script>
@@ -69,6 +83,7 @@ export default {
 <style scoped>
 .social-media-fixed {
   position: fixed;
-  top: 53%;
+  top: 40%;
+  left: 2%;
 }
 </style>

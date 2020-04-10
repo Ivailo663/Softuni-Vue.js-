@@ -22,6 +22,11 @@ export default new Vuex.Store({
       state.userLogged = payload;
       localStorage.setItem("userLogged", payload);
     },
+    SETTING_UID: (state, payload) => {
+      state.isBlurSet = false;
+      localStorage.setItem("uid", payload.user.uid);
+      state.uid = localStorage.uid;
+    },
   },
   actions: {
     setBlur({ state }) {

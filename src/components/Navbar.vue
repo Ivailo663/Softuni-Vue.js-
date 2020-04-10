@@ -109,6 +109,7 @@ export default {
         .then(() => {
           this.$store.state.userLogged = false;
           localStorage.removeItem("userLogged");
+          localStorage.remove("uid");
         })
         .catch(function(error) {
           // An error happened.

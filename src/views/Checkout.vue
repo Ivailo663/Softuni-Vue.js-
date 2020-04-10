@@ -165,7 +165,7 @@ export default {
       },
       phone: {
         phone(value) {
-          return /0[0-9]{9}/.test(value);
+          return /^(0)([0-9]{9})$/.test(value);
         }
       }
     }

@@ -20,7 +20,7 @@
         <p class="err" v-if="!$v.form.lastName.lastName">Name should start with a cappital letter</p>
       </div>
       <label for="password">Password</label>
-      <input type="password" id="password" v-model="$v.form.password.$model" />
+      <input type="password" id="password" v-model.lazy="$v.form.password.$model" />
       <div v-if="$v.form.$error">
         <p
           class="err"
@@ -95,7 +95,7 @@ export default {
       password: {
         required,
         password(value) {
-          return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(value);
+          return /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{8,}/.test(value);
         }
       }
     }
@@ -111,10 +111,8 @@ export default {
           .createUserWithEmailAndPassword(this.form.email, this.form.password)
           .then(user => {
             this.$store.state.isBlurSet = false;
-
             localStorage.setItem("uid", user.user.uid);
             this.$store.state.uid = localStorage.uid;
-
             firebase.firestore
               .collection("users")
               .doc(this.$store.state.uid)

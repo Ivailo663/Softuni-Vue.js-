@@ -41,5 +41,15 @@ export default new Vuex.Store({
     checkingState({ commit }, user) {
       commit("CHECKINT_STATE", user !== null);
     },
+    signOut(state) {
+      firebase.authtentication
+        .signOut()
+        .then(() => {
+          state.userLogged = false;
+          localStorage.removeItem("userLogged");
+          localStorage.removeItem("uid");
+        })
+        .catch((error) => {});
+    },
   },
 });

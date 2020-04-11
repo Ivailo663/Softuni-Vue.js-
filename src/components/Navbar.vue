@@ -29,7 +29,7 @@
                 </button>
               </router-link>
               <hr />
-              <button type="button" class="logout" @click="signOut">
+              <button type="button" class="logout" @click="signingOut">
                 <p>Log out</p>
               </button>
             </div>
@@ -90,6 +90,7 @@ export default {
     Basket
   },
   methods: {
+    ...mapActions(["signOut"]),
     closingBasket() {
       this.closeBasket();
     },
@@ -103,17 +104,8 @@ export default {
     openForm() {
       this.$store.state.isBlurSet = true;
     },
-    signOut() {
-      firebase.authtentication
-        .signOut()
-        .then(() => {
-          this.$store.state.userLogged = false;
-          localStorage.removeItem("userLogged");
-          localStorage.remove("uid");
-        })
-        .catch(function(error) {
-          // An error happened.
-        });
+    signingOut() {
+      this.signOut();
     },
     closeBasket() {
       this.open = false;

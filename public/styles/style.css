@@ -488,8 +488,8 @@ a {
 }
 .navigation nav ul li p {
   color: #423b3a;
-  margin-top: 1rem;
   margin-bottom: 0;
+  padding: 0.5rem 0;
   transition: 0.3s ease-in-out;
 }
 .navigation nav ul li p:hover {

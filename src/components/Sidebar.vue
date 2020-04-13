@@ -40,7 +40,7 @@ import { mapState } from "vuex";
 export default {
   mixins: [clickaway],
   name: "Sidebar",
-  props: ["item"],
+  props: { item: Object },
   data() {
     return {
       colors: [

@@ -26,19 +26,21 @@
               <label for="phoneOrder">Phone number</label>
               <input type="text" id="phoneOrder" v-model="$v.form.phone.$model" />
               <div v-if="$v.form.$error">
-                <p class="err" v-if="!$v.form.phone.phone">Name not correct</p>
+                <p class="err" v-if="!$v.form.phone.phone">Phone number not correct</p>
               </div>
 
               <label for="e-mail">E-mail</label>
               <input type="text" id="e-mail" v-model="$v.form.email.$model" />
               <div v-if="$v.form.$error">
-                <p class="err" v-if="!$v.form.email.email">E-male not correct</p>
-                <p class="err" v-if="!$v.form.email.required">E-male not correct</p>
+                <p class="err" v-if="!$v.form.email.email">E-mail not correct</p>
+                <p class="err" v-if="!$v.form.email.required">E-mail not correct</p>
               </div>
 
               <label for="addresOrder">Addres</label>
-              <input type="text" id="addresOrder" v-model="form.address" />
-
+              <input type="text" id="addresOrder" v-model="$v.form.address.$model" />
+              <div v-if="$v.form.$error">
+                <p class="err" v-if="!$v.form.address.required">Address is required</p>
+              </div>
               <div class="payment-method d-flex">
                 <div>
                   <label for="cash">
@@ -168,6 +170,9 @@ export default {
         phone(value) {
           return /^(0)([0-9]{9})$/.test(value);
         }
+      },
+      address: {
+        required
       }
     }
   },

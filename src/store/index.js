@@ -15,6 +15,10 @@ export default new Vuex.Store({
     basket: [],
     userLogged: false || localStorage.getItem("userLogged"),
     uid: localStorage.getItem("uid") || "",
+    date: new Date()
+      .toJSON()
+      .slice(0, 10)
+      .replace(/-/g, "/"),
   },
 
   mutations: {
@@ -50,6 +54,12 @@ export default new Vuex.Store({
           localStorage.removeItem("uid");
         })
         .catch((error) => {});
+    },
+    submitOrder({ state }) {
+      firebase.firestore
+        .collection("Orders")
+        .doc(state.uid)
+        .set({ order: "submitted", date: state.date });
     },
   },
 });

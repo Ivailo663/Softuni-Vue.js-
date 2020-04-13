@@ -10,7 +10,7 @@
       <div class="row" v-if="!orderSubmitted">
         <div class="col-lg-6">
           <div class="order-info">
-            <form class="d-flex flex-column" @submit.prevent="submitOrder">
+            <form class="d-flex flex-column" @submit.prevent="submit">
               <label for="firstNameOrder">First Name</label>
               <input type="text" id="firstNameOrder" v-model="$v.form.firstName.$model" />
               <div v-if="$v.form.$error">
@@ -109,7 +109,7 @@
 import { validationMixin } from "vuelidate";
 import { required, email, helpers } from "vuelidate/lib/validators";
 import { PerfectScrollbar } from "vue2-perfect-scrollbar";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import Success from "../components/Success";
 import firebase from "../firebaseInit";
 
@@ -172,7 +172,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["basket", "collectDataLogged", "uid"]),
+    ...mapState(["basket", "collectDataLogged", "uid", "date"]),
     totalPrice() {
       let arr = [];
       let sum;
@@ -183,6 +183,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(["submitOrder"]),
     userInfoCall() {
       firebase.firestore
         .collection("users")
@@ -193,18 +194,18 @@ export default {
         });
     },
 
-    submitOrder() {
+    submit() {
       this.loader = true;
+
       this.$v.$touch();
       if (!this.$v.form.$error) {
-        setTimeout(() => {
+        this.submitOrder().then(() => {
           this.orderSubmitted = true;
           this.loader = false;
           this.$store.state.basket = [];
-        }, 2000);
+        });
       } else {
         this.loader = false;
-        console.log("ERROR");
       }
     },
     discardItem(index) {

@@ -196,7 +196,6 @@ export default {
 
     submit() {
       this.loader = true;
-
       this.$v.$touch();
       if (!this.$v.form.$error) {
         this.submitOrder().then(() => {

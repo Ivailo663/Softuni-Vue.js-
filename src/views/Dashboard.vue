@@ -41,7 +41,7 @@
             <label for="phoneEdit">Phone</label>
             <input type="text" id="phoneEdit" v-model="$v.form.phone.$model" />
             <div v-if="$v.form.$error">
-              <p class="err" v-if="!$v.form.phone.phone">Name not correct</p>
+              <p class="err" v-if="!$v.form.phone.phone">Phone number correct</p>
             </div>
             <span>
               <label for="phoneEdit">

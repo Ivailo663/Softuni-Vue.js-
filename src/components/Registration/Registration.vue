@@ -25,7 +25,7 @@
         <p
           class="err"
           v-if="!$v.form.password.password"
-        >Should contain uppercase,lowercase and min 8 digits</p>
+        >Should contain uppercase,lowercase, number and min 8 digits</p>
       </div>
       <button type="submit" class="btn btn-dark" v-if="!loader">Submit</button>
       <div class="submit-holder d-flex justify-content-center" v-else>

@@ -71,7 +71,6 @@ export default {
         { id: 0, name: "men", route: "/menSection" },
         { id: 1, name: "women", route: "/womenSection" }
       ],
-      timeOut: null,
       open: false,
       dropDownOpen: false,
       selected: 0

@@ -38,7 +38,6 @@
       </div>
       <Footer />
     </div>
-
     <FormsContainer v-if="isBlurSet" />
   </div>
 </template>
@@ -52,10 +51,7 @@ import firebase from "../firebaseInit";
 
 export default {
   data() {
-    return {
-      itemAddedProp: null,
-      asdf: true
-    };
+    return {};
   },
   components: {
     Navbar,
@@ -63,10 +59,7 @@ export default {
     FormsContainer
   },
   computed: {
-    ...mapState(["isMediaShown", "isSidebarOpen", "isBlurSet", "userLogged"]),
-    itemAddedPop() {
-      return !this.$store.state.isBasketEmpty;
-    }
+    ...mapState(["isMediaShown", "isSidebarOpen", "isBlurSet", "userLogged"])
   },
   methods: {
     ...mapActions(["setBlur"]),

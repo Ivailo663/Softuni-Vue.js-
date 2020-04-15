@@ -25,7 +25,7 @@
       </div>
     </div>
     <div :class="{layer:isSidebarOpen}"></div>
-    <Sidebar :item="itemProp" @clearItem="clearingItem" v-if="isSidebarOpen" />
+    <Sidebar :item="itemProp" v-if="isSidebarOpen" />
     <!-- <Loading :active.sync="isLoading"></Loading> -->
   </div>
 </template>
@@ -65,10 +65,6 @@ export default {
         this.sneakersCollection.push(doc.data());
         // console.log(this.menCategory);
       });
-    },
-    clearingItem() {
-      this.itemProp = null;
-      console.log("Check", this.itemProp);
     }
   },
   mounted() {

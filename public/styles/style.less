@@ -122,9 +122,9 @@ i {
 // !Sidebar
 #inspire {
   margin-top: 2rem;
-  height: 40vh !important;
+  height: 32vh !important;
   .v-window {
-    height: 40vh !important;
+    height: 32vh !important;
     .v-carousel__item {
       height: 100% !important;
     }
@@ -171,7 +171,7 @@ i {
     }
   }
   .sizes {
-    margin: 0 0 3rem 0;
+    margin: 0 0 2rem 0;
   }
 }
 @media (max-width: 576px) {
@@ -541,11 +541,18 @@ a {
 }
 .sneakers {
   // margin: 10rem 0;
+  @media(max-width:600px){
+    .sneakers-wrapper{
+      padding:0 2rem;
+    }
+  }
+
 }
 .sneakers-inner {
   margin: 1rem 0;
   padding: 1rem 1rem;
   border: 1px solid @color2;
+
   .sneakers-image-holder {
     width: 100%;
     img {
@@ -593,7 +600,7 @@ a {
   background-color: @color2;
   .footer-inner-container {
     margin-top: 4rem;
-    width: 80vw;
+    width: 60%;
     ul {
       list-style: none;
       li {
@@ -602,12 +609,24 @@ a {
         font-weight: 500;
         font-size: 1.2rem;
       }
+      a{
+        text-align:center;
+      }
     }
+  }
+  @media(max-width:768px){
+    .footer-inner-container{
+      width:80%;
+      ul li{
+        font-size:1rem;
+      }
+    }
+
   }
   .info-container {
     text-align: center;
     margin: 3rem 0;
-    width: 40vw;
+
     p {
       color: @color3;
     }

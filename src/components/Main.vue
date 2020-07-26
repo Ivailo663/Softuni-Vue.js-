@@ -1,11 +1,11 @@
 <template>
-  <div class="main">
+  <div class="main" :class="{fixScroll:isSidebarOpen}">
     <div :class="{blur:isBlurSet}">
       <Navbar />
       <vue-page-transition name="fade">
         <router-view />
       </vue-page-transition>
-      <div class="social-media-fixed d-flex flex-column" v-if="this.isMediaShown">
+      <div class="social-media-fixed d-flex flex-column" v-if="isMediaShown">
         <div class="social-media-container">
           <ul class="d-flex justify-content-center flex-column">
             <li>
@@ -78,5 +78,20 @@ export default {
   position: fixed;
   top: 58%;
   left: 2%;
+}
+@media (max-width:768px){
+  .social-media-fixed{
+    visibility: hidden;
+    /* border:1px solid red; */
+  }
+
+}
+@media (max-width:420px){
+
+  .fixScroll{
+    width:100%;
+    position: fixed;
+
+  }
 }
 </style>

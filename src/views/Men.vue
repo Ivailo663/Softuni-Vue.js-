@@ -4,7 +4,7 @@
       <div
         v-for="(item) in sneakersCollection"
         :key="item.model_id"
-        class="col-lg-4 col-md-6 col-sm-6 col-12 d-flex-justify-content-start"
+        class="col-lg-4 col-md-6 col-sm-6 col-12 d-flex-justify-content-start sneakers-wrapper"
       >
         <div class="sneakers-inner d-flex flex-column align-items-center">
           <figure class="sneakers-image-holder">
